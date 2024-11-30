@@ -39,7 +39,7 @@ Mar. 2022 ‐ Aug. 2022
 * Integrated 15+ advanced functionalities into the web portal, including automated weekly summaries, targeted email reminders, and comprehensive reporting tools, significantly boosting recruitment process efficiency.
 * Collaborated with 5+ departments to customize and launch key features for a recruitment portal, enhancing user interface and stream‐lining workflow, evidenced by a 30% improvement in process efficiency.
 
-### Machine Learning Engineer (Co-op), [iFlytek](https://www.iflytek.com/en/)
+### Machine Learning Engineer (Co-op), [iFlyTek](https://www.iflytek.com/en/)
 Sept. 2021 ‐ Dec. 2021
 * Developed 7 paraphrasing techniques, achieving a high paraphrase precision rate of 95.8% and a recall rate of 99.2%, while ensuring original sentence fluency and maximizing semantic alterations.
 * Enhanced semantic similarity performance by exploring BERT‐based models; preprocessed 1M+ data using generative models with back‐translation to optimize training accuracy.
