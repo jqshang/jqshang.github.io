@@ -59,7 +59,7 @@ Mar. 2022 - Aug. 2022
 * Collaborated with 5+ departments to customize and launch key features for a recruitment portal, enhancing user interface and stream-lining workflow, evidenced by a 30% improvement in process efficiency.
 * Conducted workshops for recruiters to facilitate effective use of the new portal, enhancing user competency and ensuring smooth adoption of the platform.
 
-### Machine Learning Engineer (Co-op) [#Independent]()
+### Machine Learning Engineer (Co-op)
 
 [iFlytek](https://www.iflytek.com/en/)
 
