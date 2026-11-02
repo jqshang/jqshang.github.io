@@ -1,0 +1,20 @@
+- title: Basis Transformers for Multi-Task Tabular Regression
+  authors: [Wei Min Loh, Jiaqi Shang, Pascal Poupart]
+  venue: arXiv preprint
+  year: 2025
+  summary: >-
+    A transformer for tables with heterogeneous columns, text features and missing values. Across
+    34 OpenML-CTR23 tasks it lifts median R² by 0.338 with the lowest variance, using five times
+    fewer parameters than the strongest baseline.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2506.06926
+    - label: PDF
+      url: https://arxiv.org/pdf/2506.06926
+  bibtex: |-
+    @article{loh2025basis,
+      title   = {Basis Transformers for Multi-Task Tabular Regression},
+      author  = {Loh, Wei Min and Shang, Jiaqi and Poupart, Pascal},
+      journal = {arXiv preprint arXiv:2506.06926},
+      year    = {2025}
+    }

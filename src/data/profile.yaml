@@ -1,0 +1,33 @@
+name: Jiaqi Shang
+role: MSc in Applied Computing
+affiliation: University of Toronto
+location: Toronto, Ontario, Canada
+email: jiaqi.shang@mail.utoronto.ca
+photo: /images/profile.jpg
+links:
+  - label: Email
+    url: mailto:jiaqi.shang@mail.utoronto.ca
+  - label: Google Scholar
+    url: https://scholar.google.ca/citations?user=X4h0EnIAAAAJ&hl=en
+  - label: GitHub
+    url: https://github.com/jqshang
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/charlesshang11
+cv: /cv.pdf
+# Bio paragraphs. Markdown-style links are written as HTML.
+bio:
+  - >-
+    I am an <a href="https://mscac.utoronto.ca/">MScAC</a> student at the
+    <a href="https://www.utoronto.ca/">University of Toronto</a>. My research interests focus on
+    Machine learning, Generative Modelling, Tabular Learning, Computational Imaging, Speech
+    Enhancement, and Causality. However, I'm open to exploring any interesting problems in the field
+    of Computer Science and Statistics.
+  - >-
+    Previously, I was an undergraduate student in
+    <a href="https://cs.uwaterloo.ca/">David R. Cheriton School of Computer Science</a> at the
+    <a href="https://uwaterloo.ca/">University of Waterloo</a>, majoring in both Computer Science and
+    Statistics, minoring in Computational Mathematics. I was also a Machine Learning Engineer at
+    <a href="https://vectorinstitute.ai/">Vector Institute</a> and an Undergraduate Research Assistant
+    at the <a href="https://uwaterloo.ca/">University of Waterloo</a>, working on developing
+    algorithms for bandit foundation models and tabular foundation models, supervised by
+    <a href="https://cs.uwaterloo.ca/~ppoupart/">Prof. Pascal Poupart</a>.

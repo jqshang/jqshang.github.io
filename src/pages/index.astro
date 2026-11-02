@@ -1,0 +1,311 @@
+---
+import '../styles/site.css';
+import { profile, publications, projects, cv } from '../data/load';
+
+const updated = new Date().toLocaleDateString('en-CA', { month: 'long', year: 'numeric' });
+const year = new Date().getFullYear();
+const description = `${profile.name}: ${profile.role} student at the ${profile.affiliation}. Machine learning research in tabular learning, generative modelling and causality.`;
+const totalPages = 3;
+
+// Bold the site owner's name in author lists.
+const isMe = (author: string) => author === profile.name;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{profile.name}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://jqshang.github.io/" />
+    <meta property="og:title" content={profile.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://jqshang.github.io${profile.photo}`} />
+    <meta name="theme-color" content="#1a2039" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="bar">
+      <a class="wordmark" href="#top">{profile.name}</a>
+      <nav aria-label="Sections">
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href={profile.cv}>CV</a>
+      </nav>
+      <button class="theme" type="button" aria-label="Switch colour theme">
+        <span class="theme__to-dark">Dark</span><span class="theme__to-light">Light</span>
+      </button>
+    </header>
+
+    <main id="main">
+      <!-- Page 1: the title page -->
+      <article class="sheet sheet--title" id="top">
+        <h1 class="title">{profile.name}</h1>
+        <p class="affil">
+          {profile.role}, {profile.affiliation}<br />
+          {profile.location}
+        </p>
+
+        <p class="contact">
+          {profile.links.map((l: { label: string; url: string }) => <a href={l.url}>{l.label}</a>)}
+          <a class="button" href={profile.cv}>Download CV</a>
+        </p>
+
+        <div class="abstract">
+          <section aria-labelledby="abstract-h" class="reveal">
+            <h2 id="abstract-h" class="abstract__h">Abstract</h2>
+            {profile.bio.map((p: string) => <p set:html={p} />)}
+          </section>
+          <figure class="figure reveal">
+            <img src={profile.photo} width="800" height="800" alt={`Portrait of ${profile.name}`} />
+            <figcaption><b>Figure 1.</b> The author.</figcaption>
+          </figure>
+        </div>
+
+        <p class="folio">1 of {totalPages}</p>
+      </article>
+
+      <!-- Page 2: publications and projects -->
+      <article class="sheet">
+        <section id="publications" aria-labelledby="pub-h" class="reveal">
+          <h2 id="pub-h">Publications</h2>
+          <ol class="refs">
+            {
+              publications.map((p: any) => (
+                <li class="ref">
+                  <div class="ref__head">
+                  <h3 class="ref__title">
+                    <a href={p.links[0].url}>{p.title}</a>
+                  </h3>
+                  <p class="ref__authors">
+                    {p.authors.map((a: string, i: number) => (
+                      <>
+                        {isMe(a) ? <strong>{a}</strong> : a}
+                        {i < p.authors.length - 1 ? ', ' : ''}
+                      </>
+                    ))}
+                  </p>
+                  <p class="ref__venue">
+                    <em>{p.venue}</em>, {p.year}
+                  </p>
+                  </div>
+                  {p.summary && <p class="ref__summary">{p.summary}</p>}
+                  <div class="ref__links">
+                    {p.links.map((l: any) => <a href={l.url}>{l.label}</a>)}
+                    {p.bibtex && (
+                      <details class="cite">
+                        <summary>BibTeX</summary>
+                        <div class="cite__box">
+                          <pre><code>{p.bibtex}</code></pre>
+                          <button type="button" class="cite__copy" data-bibtex={p.bibtex}>
+                            Copy
+                          </button>
+                        </div>
+                      </details>
+                    )}
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+
+        <section id="projects" aria-labelledby="proj-h" class="projects reveal">
+          <h2 id="proj-h">Projects</h2>
+          <div class="projects__list">
+            {
+              projects.map((p: any) => (
+                <article class="project">
+                  <h3>{p.title}</h3>
+                  <p class="project__meta">
+                    {p.date} · {p.tags.join(', ')}
+                  </p>
+                  <p>{p.summary}</p>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <p class="folio">2 of {totalPages}</p>
+      </article>
+
+      <!-- Page 3: the tables -->
+      <article class="sheet">
+        <section id="experience" aria-labelledby="exp-h" class="reveal">
+          <h2 id="exp-h">Experience</h2>
+          <table class="booktabs">
+            <caption>
+              <b>Table 1.</b> Research and industry positions. Full details in the <a href={profile.cv}>CV</a>.
+            </caption>
+            <thead>
+              <tr><th scope="col">Years</th><th scope="col">Position</th><th scope="col">Organization</th><th scope="col">Focus</th></tr>
+            </thead>
+            <tbody>
+              {
+                cv.experience.map((e: any) => (
+                  <tr>
+                    <td class="num">{e.period}</td>
+                    <th scope="row">{e.role}</th>
+                    <td><a href={e.url}>{e.place}</a></td>
+                    <td>{e.note}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </section>
+
+        <div class="pair">
+          <section id="education" aria-labelledby="edu-h" class="reveal">
+            <h2 id="edu-h">Education</h2>
+            <table class="booktabs">
+              <caption><b>Table 2.</b> Degrees.</caption>
+              <thead>
+                <tr><th scope="col">Years</th><th scope="col">Degree</th></tr>
+              </thead>
+              <tbody>
+                {
+                  cv.education.map((e: any) => (
+                    <tr>
+                      <td class="num">{e.period}</td>
+                      <td>
+                        <strong>{e.degree}</strong>
+                        <br />
+                        <a href={e.url}>{e.place}</a>. {e.note}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </section>
+
+          <section id="awards" aria-labelledby="awd-h" class="reveal">
+            <h2 id="awd-h">Awards</h2>
+            <table class="booktabs">
+              <caption><b>Table 3.</b> Awards, scholarships and grants.</caption>
+              <thead>
+                <tr><th scope="col">Year</th><th scope="col">Award</th><th scope="col" class="num">Amount</th></tr>
+              </thead>
+              <tbody>
+                {
+                  cv.awards.map((a: any) => (
+                    <tr>
+                      <td class="num">{a.year}</td>
+                      <td>{a.name}</td>
+                      <td class="num">{a.amount}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </section>
+        </div>
+
+        <p class="folio">3 of {totalPages}</p>
+      </article>
+    </main>
+
+    <!-- The back of the paper -->
+    <footer class="back">
+      <div class="back__edge" aria-hidden="true">{Array.from({ length: 12 }, () => <span />)}</div>
+      <div class="back__body">
+        <div>
+          <p class="back__name">{profile.name}</p>
+          <p>
+            The best way to reach me is by email. I'm happy to talk about research, tabular data, or
+            anything in between.
+          </p>
+        </div>
+        <ul class="back__links">
+          {profile.links.map((l: any) => <li><a href={l.url}>{l.label === 'Email' ? profile.email : l.label}</a></li>)}
+          <li><a href={profile.cv}>Curriculum vitae (PDF)</a></li>
+        </ul>
+      </div>
+      <p class="back__imprint">© {year} {profile.name}. Last updated {updated}.</p>
+    </footer>
+
+    <script>
+      // Theme toggle
+      const root = document.documentElement;
+      document.querySelector('.theme')?.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('theme', next);
+      });
+
+      // Copy BibTeX
+      document.querySelectorAll<HTMLButtonElement>('.cite__copy').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(btn.dataset.bibtex ?? '');
+            btn.textContent = 'Copied';
+          } catch {
+            btn.textContent = 'Select and copy';
+          }
+          setTimeout(() => (btn.textContent = 'Copy'), 1800);
+        });
+      });
+
+      // Mark the section in view in the nav
+      const navLinks = new Map(
+        [...document.querySelectorAll<HTMLAnchorElement>('.bar nav a[href^="#"]')].map((a) => [a.hash.slice(1), a]),
+      );
+      const spy = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            const link = navLinks.get(e.target.id);
+            if (!link) continue;
+            if (e.isIntersecting) {
+              navLinks.forEach((a) => a.removeAttribute('aria-current'));
+              link.setAttribute('aria-current', 'true');
+            } else if (link.hasAttribute('aria-current') && e.boundingClientRect.top > 0) {
+              link.removeAttribute('aria-current');
+            }
+          }
+        },
+        { rootMargin: '-30% 0px -60% 0px' },
+      );
+      navLinks.forEach((_, id) => {
+        const el = document.getElementById(id);
+        if (el) spy.observe(el);
+      });
+
+      // Entrances: content is visible by default; only animate when JS runs and motion is allowed.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        const items = document.querySelectorAll<HTMLElement>('.reveal');
+        root.classList.add('motion');
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-in');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px' },
+        );
+        items.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>
