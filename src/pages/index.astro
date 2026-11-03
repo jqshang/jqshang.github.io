@@ -227,9 +227,9 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
       <!-- Experience -->
       <section aria-labelledby="res-h" class="block" id="research">
         <h2 id="res-h">Research</h2>
-        <ul class="rows">
+        <ul class="rows timeline">
           {cv.research.map((r: any) => (
-            <li class="row row__grid">
+            <li class={`row row__grid${r.end ? '' : ' is-ongoing'}`}>
               <span class="row__when"><span>{r.start} –</span>{r.end ? <span>{r.end}</span> : <span class="live">Ongoing</span>}</span>
               <div>
                 <p class="row__what">
@@ -244,9 +244,9 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
 
       <section aria-labelledby="ind-h" class="block" id="industry">
         <h2 id="ind-h">Industry</h2>
-        <ul class="rows">
+        <ul class="rows timeline">
           {cv.industry.map((r: any) => (
-            <li class="row row__grid">
+            <li class={`row row__grid${r.end ? '' : ' is-ongoing'}`}>
               <span class="row__when"><span>{r.start} –</span>{r.end ? <span>{r.end}</span> : <span class="live">Ongoing</span>}</span>
               <div>
                 <p class="row__what">{r.role}, {r.url ? <a href={r.url}>{r.org}</a> : r.org}</p>

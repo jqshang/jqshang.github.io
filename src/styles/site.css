@@ -327,6 +327,24 @@ h2 {
 .row__note { color: var(--muted); font-size: 0.9375rem; margin-top: 2px; max-width: 68ch; }
 a.pv { text-decoration-style: dotted; }
 
+/* ---------- Timeline rail (Research, Industry) ---------- */
+.timeline { --rail-x: 126px; --dot-y: 24px; }
+.timeline .row__grid { position: relative; column-gap: 44px; }
+.timeline .row::before {           /* the rail */
+  content: ''; position: absolute; left: calc(var(--rail-x) - 0.5px); top: 0; bottom: 0;
+  width: 1px; background: color-mix(in srgb, var(--muted) 35%, var(--bg));
+}
+.timeline .row:first-child::before { top: var(--dot-y); }
+.timeline .row:last-child::before { bottom: calc(100% - var(--dot-y)); }
+.timeline .row::after {            /* the dot */
+  content: ''; position: absolute; left: calc(var(--rail-x) - 5px); top: calc(var(--dot-y) - 5px);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); box-shadow: inset 0 0 0 1.5px var(--muted);
+  transition: transform 0.45s var(--spring);
+}
+.timeline .row.is-ongoing::after { background: var(--accent); box-shadow: 0 0 0 3px var(--bg); }
+.timeline .row:hover::after { transform: scale(1.3); }
+
 /* ---------- Off the clock: the record shelf ---------- */
 .shelf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 24px; }
 .record__hit { position: relative; display: block; aspect-ratio: 1; text-decoration: none; outline-offset: 4px; }
@@ -464,6 +482,8 @@ a.pv { text-decoration-style: dotted; }
   .avatar { order: -1; width: 112px; height: 112px; border-radius: 16px; }
   .row__grid { grid-template-columns: 1fr; gap: 2px; }
   .row__when { flex-direction: row; gap: 6px; }
+  .timeline { --rail-x: 5px; --dot-y: 20px; }
+  .timeline .row__grid { padding-left: 26px; }
   .shelf { gap: 12px; }
   .record__hit:hover .record__vinyl { transform: translateX(30%); }
   .block__head { display: grid; }
