@@ -1,6 +1,6 @@
 ---
 import '../styles/site.css';
-import { profile, previews, publications, projects, cv, music, withPreviews } from '../data/load';
+import { profile, previews, publications, projects, cv, music, notes, withPreviews } from '../data/load';
 
 const icons = import.meta.glob('../icons/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const icon = (name: string) => icons[`../icons/${name}.svg`] ?? '';
@@ -94,11 +94,10 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         {profile.bio.map((p: string) => <p class="prose" set:html={withPreviews(p)} />)}
       </section>
 
-      <!-- Publications + projects share one filter -->
-      <section aria-labelledby="pub-h" class="block" id="publications">
-        <div class="block__head">
-          <h2 id="pub-h">Publications</h2>
-          <div class="chips" role="group" aria-label="Filter by topic">
+      <!-- Publications + projects share one filter. The bar is sticky across both and leaves after projects. -->
+      <div class="filtered block" id="publications">
+        <div class="filterbar" role="region" aria-label="Filter publications and projects by topic">
+          <div class="chips" role="group" aria-label="Topic">
             <button type="button" class="chip" data-topic="all" aria-pressed="true">All</button>
             {TOPICS.map((t) => (
               <button type="button" class="chip" data-topic={t.id} aria-pressed="false">
@@ -106,60 +105,73 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
               </button>
             ))}
           </div>
+          <p class="filterbar__status" aria-live="polite">
+            <span class="filterbar__summary">Showing {publications.length} publications · {projects.length} projects</span>
+            <button type="button" class="filterbar__clear" hidden>Clear</button>
+          </p>
         </div>
 
-        <ol class="pubs">
-          {publications.map((p: any, i: number) => (
-            <li class="pub filterable" data-topics={p.topics.join(' ')}>
-              <div class="filterable__inner">
-                <button type="button" class="pub__head" aria-expanded="false" aria-controls={`pub-${i}`}>
-                  <span class="pub__title">{p.title}</span>
-                  <span class="pub__meta">
-                    <span>{p.venue}</span>
-                    {p.status && <span class={`badge ${p.status === 'Oral' ? 'badge--hot' : ''}`}>{p.status}</span>}
-                  </span>
-                  <span class="pub__authors">
-                    {p.authors.map((a: string, k: number) => (
-                      <>{isMe(a) ? <strong>{a}</strong> : a}{k < p.authors.length - 1 ? ', ' : ''}</>
-                    ))}
-                  </span>
-                  <span class="pub__chev" aria-hidden="true" />
-                </button>
-                <div class="pub__panel" id={`pub-${i}`}>
-                  <div class="pub__panel-inner">
-                    <p class="pub__summary">{p.summary}</p>
-                    {(p.links.length > 0 || p.bibtex) && (
-                      <div class="pub__actions">
-                        {p.links.map((l: any) => <a class="pill" href={l.url}>{l.label}<span class="arrow" aria-hidden="true"></span></a>)}
-                        {p.bibtex && <button type="button" class="pill copy" data-copy={p.bibtex}>Copy BibTeX</button>}
-                      </div>
-                    )}
+        <section aria-labelledby="pub-h" class="sub">
+          <h2 id="pub-h">Selected Publications</h2>
+          {notes.publications && <p class="note" set:html={notes.publications} />}
+          <ol class="pubs">
+            {publications.map((p: any, i: number) => (
+              <li class="pub filterable" data-kind="pub" data-topics={p.topics.join(' ')}>
+                <div class="filterable__inner">
+                  <button type="button" class="pub__head" aria-expanded="false" aria-controls={`pub-${i}`}>
+                    <span class="pub__title">{p.title}</span>
+                    <span class="pub__meta">
+                      <span>{p.venue}</span>
+                      {p.status && <span class={`badge ${p.status === 'Oral' ? 'badge--hot' : ''}`}>{p.status}</span>}
+                    </span>
+                    <span class="pub__authors">
+                      {p.authors.map((a: string, k: number) => (
+                        <>
+                          {isMe(a) ? <strong>{a}</strong> : a}
+                          {(p.first ?? [0]).includes(k) && <sup class="dagger" title="First author">†</sup>}
+                          {k < p.authors.length - 1 ? ', ' : ''}
+                        </>
+                      ))}
+                    </span>
+                    <span class="pub__chev" aria-hidden="true" />
+                  </button>
+                  <div class="pub__panel" id={`pub-${i}`}>
+                    <div class="pub__panel-inner">
+                      <p class="pub__summary">{p.summary}</p>
+                      {(p.links.length > 0 || p.bibtex) && (
+                        <div class="pub__actions">
+                          {p.links.map((l: any) => <a class="pill" href={l.url} target="_blank" rel="noopener noreferrer">{l.label}<span class="arrow" aria-hidden="true"></span></a>)}
+                          {p.bibtex && <button type="button" class="pill copy" data-copy={p.bibtex}>Copy BibTeX</button>}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <p class="empty" hidden>No papers in this topic yet. See the projects below.</p>
-      </section>
+              </li>
+            ))}
+          </ol>
+          <p class="empty" hidden>No publications in this topic yet.</p>
+        </section>
 
-      <section aria-labelledby="proj-h" class="block" id="projects">
-        <h2 id="proj-h">Projects</h2>
-        <ul class="rows">
-          {projects.map((p: any) => (
-            <li class="row filterable" data-topics={p.topics.join(' ')}>
-              <div class="filterable__inner row__grid">
-                <span class="row__when">{p.period}</span>
-                <div>
-                  <p class="row__what">{p.title}</p>
-                  <p class="row__note">{p.summary}</p>
+        <section aria-labelledby="proj-h" class="sub" id="projects">
+          <h2 id="proj-h">Selected Projects</h2>
+          <ul class="rows">
+            {projects.map((p: any) => (
+              <li class="row filterable" data-kind="proj" data-topics={p.topics.join(' ')}>
+                <div class="filterable__inner row__grid">
+                  <span class="row__when">{p.period}</span>
+                  <div>
+                    <p class="row__what">{p.title}</p>
+                    <p class="row__note">{p.summary}</p>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-        <p class="empty" hidden>No projects in this topic yet.</p>
-      </section>
+              </li>
+            ))}
+          </ul>
+          <p class="empty" hidden>No projects in this topic yet.</p>
+        </section>
+        <hr class="filtered__end" />
+      </div>
 
       <!-- Experience -->
       <section aria-labelledby="res-h" class="block" id="research">
@@ -303,22 +315,26 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
       /* ---- Topic filter (papers + projects) ---- */
       const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
       const items = [...document.querySelectorAll<HTMLElement>('.filterable')];
-      chips.forEach((chip) =>
-        chip.addEventListener('click', () => {
-          const t = chip.dataset.topic!;
-          chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
-          items.forEach((el) => {
-            const show = t === 'all' || el.dataset.topics!.split(' ').includes(t);
-            el.classList.toggle('is-out', !show);
-            el.toggleAttribute('inert', !show);
-          });
-          document.querySelectorAll<HTMLElement>('.block').forEach((sec) => {
-            const empty = sec.querySelector<HTMLElement>('.empty');
-            if (!empty) return;
-            empty.hidden = !!sec.querySelector('.filterable:not(.is-out)');
-          });
-        }),
-      );
+      const summary = document.querySelector<HTMLElement>('.filterbar__summary')!;
+      const clear = document.querySelector<HTMLButtonElement>('.filterbar__clear')!;
+      const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? '' : 's'}`;
+      function applyFilter(t: string) {
+        chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.topic === t)));
+        let pubs = 0, projs = 0;
+        items.forEach((el) => {
+          const show = t === 'all' || el.dataset.topics!.split(' ').includes(t);
+          el.classList.toggle('is-out', !show);
+          el.toggleAttribute('inert', !show);
+          if (show) el.dataset.kind === 'pub' ? pubs++ : projs++;
+        });
+        document.querySelectorAll<HTMLElement>('.filtered .sub').forEach((sec) => {
+          sec.querySelector<HTMLElement>('.empty')!.hidden = !!sec.querySelector('.filterable:not(.is-out)');
+        });
+        summary.textContent = `Showing ${plural(pubs, 'publication')} · ${plural(projs, 'project')}`;
+        clear.hidden = t === 'all';
+      }
+      chips.forEach((chip) => chip.addEventListener('click', () => applyFilter(chip.dataset.topic!)));
+      clear.addEventListener('click', () => applyFilter('all'));
 
       /* ---- Hover previews ---- */
       const data = JSON.parse(document.getElementById('preview-data')!.textContent!);

@@ -179,6 +179,27 @@ h2 {
 }
 .empty { color: var(--muted); padding: 8px 0; }
 
+/* ---------- Filtered area: one sticky bar for publications + projects ---------- */
+.filterbar {
+  position: sticky; top: 0; z-index: 4;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px;
+  padding: 14px 0;
+  margin-bottom: 8px;
+  background: var(--bg);
+}
+.filterbar__status { display: flex; align-items: center; gap: 12px; font-size: 0.8125rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.filterbar__clear {
+  font-size: 0.8125rem; color: var(--accent); font-weight: 500;
+  padding: 4px 8px; margin: -4px -8px; border-radius: 6px;
+  transition: background-color 0.2s;
+}
+.filterbar__clear:hover { background: var(--surface); }
+.sub > h2 { margin-top: 28px; }
+.sub + .sub { margin-top: 72px; }
+.note { font-size: 0.8125rem; color: var(--muted); margin: -10px 0 16px; }
+.note sup, .dagger { color: var(--accent); font-size: 0.75em; margin-left: 1px; }
+.filtered__end { border: 0; height: 1px; background: var(--faint); margin: 64px 0 0; }
+
 /* ---------- Chips ---------- */
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {

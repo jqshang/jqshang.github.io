@@ -5,6 +5,7 @@ import publicationsRaw from './publications.yaml?raw';
 import projectsRaw from './projects.yaml?raw';
 import cvRaw from './cv.yaml?raw';
 import musicRaw from './music.yaml?raw';
+import notesRaw from './notes.yaml?raw';
 
 export const profile = parse(profileRaw);
 export const previews: Record<string, { title: string; sub: string; body: string; url: string }> = parse(previewsRaw);
@@ -12,6 +13,7 @@ export const publications = parse(publicationsRaw);
 export const projects = parse(projectsRaw);
 export const cv = parse(cvRaw);
 export const music = parse(musicRaw);
+export const notes = parse(notesRaw) ?? {};
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 /** Turn [[key|text]] into a link that opens a hover preview, and __text__ into an underlined emphasis. */

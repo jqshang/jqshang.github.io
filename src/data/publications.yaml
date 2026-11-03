@@ -1,4 +1,5 @@
 # topics: tabular | causal | multi-agent | vision
+# first: indices of first/co-first authors (default [0]); marked with †
 - title: "Predict by Pointing: A Task-Agnostic Output Head for Tabular In-Context Learning"
   authors: [Qiuhao Zeng, Jerry Huang, Younwoo Choi, Jiaqi Shang, Rahul G. Krishnan]
   venue: ICLR 2027
