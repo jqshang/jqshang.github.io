@@ -75,7 +75,7 @@ a:hover .arrow { transform: translate(2px, -2px); }
 
 /* ---------- Column ---------- */
 .col {
-  max-width: 760px;
+  max-width: 880px;
   margin: 0 auto;
   padding: clamp(64px, 12vh, 128px) 24px 64px;
 }
@@ -131,7 +131,7 @@ h2 {
 }
 .block__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 20px; margin-bottom: 20px; }
 .block__head h2 { margin-bottom: 0; }
-.prose { max-width: 70ch; }
+.prose { max-width: 75ch; }
 .prose + .prose { margin-top: 14px; }
 .prose a.pv { text-decoration-style: dotted; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); }
 .empty { color: var(--muted); padding: 8px 0; }
