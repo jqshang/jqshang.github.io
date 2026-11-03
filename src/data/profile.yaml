@@ -1,6 +1,9 @@
 name: Jiaqi Shang
-# Placeholder pitch — rewrite later.
-pitch: I build machine learning models that reason over tables, causes, and agents.
+# Motto shown under the name, in Chinese with its English translation.
+motto:
+  zh: 努力做一个善良、幸福的人。
+  en: Strive to be a kind and happy person.
+# Used only in the page's search/share description.
 role: MScAC student at the University of Toronto
 photo: /images/profile.jpg
 email: jqshang@cs.toronto.edu
