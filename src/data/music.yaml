@@ -6,15 +6,15 @@
   cover: /images/albums/voicenotes.jpg
   color: "#4b1015"
   url: https://music.apple.com/us/album/voicenotes/1293229669
-- title: Whatever's Clever!
-  artist: Charlie Puth
-  year: 2026
-  cover: /images/albums/whatevers-clever.jpg
-  color: "#902223"
-  url: https://music.apple.com/us/album/whatevers-clever/1845189970
 - title: CHARLIE
   artist: Charlie Puth
   year: 2022
   cover: /images/albums/charlie.jpg
   color: "#706a64"
   url: https://music.apple.com/us/album/charlie/1633317997
+- title: Whatever's Clever!
+  artist: Charlie Puth
+  year: 2026
+  cover: /images/albums/whatevers-clever.jpg
+  color: "#902223"
+  url: https://music.apple.com/us/album/whatevers-clever/1845189970
