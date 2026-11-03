@@ -24,7 +24,7 @@ links:
   - label: CV
     text: CV
     url: /cv.pdf
-# Bio. [[key|text]] marks a hover preview (see previews.yaml).
+# Bio. [[key|text]] marks a hover preview (see previews.yaml); __text__ underlines for emphasis.
 bio:
   - >-
     I'm a Master of Science in Applied Computing student at the [[uoft|University of Toronto]], where
@@ -43,7 +43,7 @@ bio:
     it keeps impressing me, all the more because it is getting better so quickly. On anything that
     comes down to memorization and pattern matching, today's models are already better than I am,
     and better than I ever expected. Where they still fall short is design, invention, creativity,
-    and reasoning: deciding what is worth building, and why. That is where I want to focus.
+    and reasoning: __deciding what is worth building, and why__. That is where I want to focus.
   - >-
     It is also why I want to go deeper into research and into the essence of things: to spend my
     time on the creative part, to understand the theory underneath, and to feel the beauty where

@@ -14,9 +14,9 @@ export const cv = parse(cvRaw);
 export const music = parse(musicRaw);
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-/** Turn [[key|text]] into a link that opens a hover preview. */
+/** Turn [[key|text]] into a link that opens a hover preview, and __text__ into an underlined emphasis. */
 export function withPreviews(text: string): string {
-  return esc(text).replace(/\[\[([\w-]+)\|([^\]]+)\]\]/g, (_, key, label) => {
+  return esc(text).replace(/__(.+?)__/g, '<span class="mark">$1</span>').replace(/\[\[([\w-]+)\|([^\]]+)\]\]/g, (_, key, label) => {
     const p = previews[key];
     if (!p) return label;
     return `<a class="pv" href="${p.url}" data-preview="${key}">${label}</a>`;

@@ -170,6 +170,13 @@ h2 {
 .prose { max-width: 75ch; }
 .prose + .prose { margin-top: 14px; }
 .prose a.pv { text-decoration-style: dotted; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); }
+.mark {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: auto;
+}
 .empty { color: var(--muted); padding: 8px 0; }
 
 /* ---------- Chips ---------- */
