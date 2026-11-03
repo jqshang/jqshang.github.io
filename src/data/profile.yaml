@@ -22,7 +22,7 @@ links:
     icon: linkedin
     url: https://www.linkedin.com/in/charlesshang11
   - label: CV
-    icon: file-text
+    text: CV
     url: /cv.pdf
 # Placeholder bio — rewrite later. [[key|text]] marks a hover preview (see previews.yaml).
 bio:

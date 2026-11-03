@@ -79,7 +79,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
                   aria-label={l.label}
                   data-label={l.label}
                   {...(isMail(l.url) ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-                  set:html={icon(l.icon)}
+                  set:html={l.text ? `<span class="icon-link__text">${l.text}</span>` : icon(l.icon)}
                 />
               </li>
             ))}
