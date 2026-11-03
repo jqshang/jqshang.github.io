@@ -360,6 +360,30 @@ a.pv { text-decoration-style: dotted; }
 .record__cap { margin-top: 12px; font-size: 0.875rem; display: grid; }
 .record__cap span:last-child { color: var(--muted); }
 
+/* ---------- Visitor map fold ---------- */
+.vis__toggle {
+  display: flex; align-items: baseline; gap: 14px; width: 100%;
+  border-radius: 12px; padding: 6px 12px; margin: -6px -12px;
+  box-sizing: content-box;
+  transition: background-color 0.2s;
+}
+.vis__toggle:hover { background: var(--surface); }
+.vis__toggle h2 { margin: 0; }
+.vis__hint { font-size: 0.875rem; color: var(--accent); font-weight: 500; }
+.vis__chev {
+  width: 0.45em; height: 0.45em; color: var(--accent);
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform 0.45s var(--spring);
+}
+.vis.is-open .vis__chev { transform: translateY(0) rotate(-135deg); }
+.vis__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.55s var(--out); }
+.vis.is-open .vis__panel { grid-template-rows: 1fr; }
+.vis__inner { min-height: 0; overflow: hidden; }
+.vis__inner > .prose { margin-top: 20px; }
+.vis__inner > * { opacity: 0; transition: opacity 0.35s; }
+.vis.is-open .vis__inner > * { opacity: 1; transition-delay: 0.1s; }
+
 /* ---------- Visitor map ----------
    MapMyVisitors draws its own widget; these overrides bring it into the page's palette.
    Land colour comes from the `cl` parameter in the embed URL. */

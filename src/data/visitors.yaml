@@ -1,0 +1,7 @@
+# Visitor map (MapMyVisitors). Colours are 6-digit hex codes without the "#", in quotes.
+# Pick colours at e.g. https://htmlcolorcodes.com and paste the code here, then save.
+id: 5h49NF9-cTbhK6yDr0mxxi2srP2bPs2On7WEatkTeFs
+colors:
+  land: "d8cfc2"   # countries
+  ocean: "efebe4"  # sea / background
+  text: "69635a"   # "N Pageviews" and the date range

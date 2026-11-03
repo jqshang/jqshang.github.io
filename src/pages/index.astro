@@ -1,6 +1,8 @@
 ---
 import '../styles/site.css';
-import { profile, previews, publications, projects, cv, music, notes, withPreviews } from '../data/load';
+import { profile, previews, publications, projects, cv, music, notes, visitors, withPreviews } from '../data/load';
+const hex = (c: unknown) => String(c).replace('#', '').padStart(6, '0');
+const visitorMapSrc = `https://mapmyvisitors.com/map.js?d=${visitors.id}&cl=${hex(visitors.colors.land)}&co=${hex(visitors.colors.ocean)}&ct=${hex(visitors.colors.text)}&w=a`;
 
 const icons = import.meta.glob('../icons/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const icon = (name: string) => icons[`../icons/${name}.svg`] ?? '';
@@ -296,21 +298,31 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
 
       <!-- Visitor map (MapMyVisitors). The script inserts the map right after itself. -->
       <section aria-labelledby="vis-h" class="block" id="visitors">
-        <h2 id="vis-h">Visitors</h2>
-        <p class="prose">Where people have visited this page from.</p>
-        <div class="visitors">
-          <p class="visitors__local">The visitor map loads on the live site only, so local previews don't count as visits.</p>
-          <script is:inline>
-            // Load MapMyVisitors only on the published site. The widget inserts itself after #mapmyvisitors.
-            if (location.hostname === 'jqshang.github.io') {
-              const box = document.currentScript.parentElement;
-              box.querySelector('.visitors__local')?.remove();
-              const s = document.createElement('script');
-              s.id = 'mapmyvisitors';
-              s.src = 'https://mapmyvisitors.com/map.js?d=5h49NF9-cTbhK6yDr0mxxi2srP2bPs2On7WEatkTeFs&cl=d8cfc2&co=efebe4&ct=69635a&w=a';
-              box.appendChild(s);
-            }
-          </script>
+        <div class="vis">
+          <button type="button" class="vis__toggle" aria-expanded="false" aria-controls="vis-panel">
+            <h2 id="vis-h">Visitors</h2>
+            <span class="vis__hint">Show map</span><span class="vis__chev" aria-hidden="true"></span>
+          </button>
+          <div class="vis__panel" id="vis-panel">
+            <div class="vis__inner">
+              <p class="prose">Where people have visited this page from.</p>
+              <div class="visitors" data-src={visitorMapSrc}>
+                <p class="visitors__local">The visitor map loads on the live site only, so local previews don't count as visits.</p>
+                <script is:inline>
+                  // Load MapMyVisitors on the published site only (it counts a visit when it loads,
+                  // so it loads with the page even while folded). It inserts itself after #mapmyvisitors.
+                  if (location.hostname === 'jqshang.github.io') {
+                    const box = document.currentScript.parentElement;
+                    box.querySelector('.visitors__local')?.remove();
+                    const s = document.createElement('script');
+                    s.id = 'mapmyvisitors';
+                    s.src = box.dataset.src;
+                    box.appendChild(s);
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -386,6 +398,15 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
           btn.closest('.abs')!.classList.toggle('is-open', !open);
           btn.querySelector('.abs__label')!.textContent = open ? 'Read full abstract' : 'Hide full abstract';
         });
+      });
+
+      /* ---- Visitor map fold ---- */
+      const visBtn = document.querySelector<HTMLButtonElement>('.vis__toggle')!;
+      visBtn.addEventListener('click', () => {
+        const open = visBtn.getAttribute('aria-expanded') !== 'true';
+        visBtn.setAttribute('aria-expanded', String(open));
+        visBtn.closest('.vis')!.classList.toggle('is-open', open);
+        visBtn.querySelector('.vis__hint')!.textContent = open ? 'Hide map' : 'Show map';
       });
 
       /* ---- Site map ---- */
