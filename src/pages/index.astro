@@ -5,6 +5,17 @@ import { profile, previews, publications, projects, cv, music, notes, withPrevie
 const icons = import.meta.glob('../icons/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const icon = (name: string) => icons[`../icons/${name}.svg`] ?? '';
 const isMail = (url: string) => url.startsWith('mailto:');
+const SITEMAP = [
+  { href: '#top', label: 'Top' },
+  { href: '#about', label: 'About' },
+  { href: '#education', label: 'Education' },
+  { href: '#selected-publications', label: 'Selected Publications' },
+  { href: '#projects', label: 'Selected Projects' },
+  { href: '#research', label: 'Research' },
+  { href: '#industry', label: 'Industry' },
+  { href: '#awards', label: 'Awards' },
+  { href: '#off-the-clock', label: 'Off the clock' },
+];
 
 const TOPICS = [
   { id: 'tabular', label: 'Tabular' },
@@ -64,6 +75,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
     </button>
 
     <main id="main" class="col">
+      <span id="top"></span>
       <!-- Intro -->
       <header class="intro">
         <div class="intro__text">
@@ -91,12 +103,12 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
       </header>
 
       <!-- About -->
-      <section aria-labelledby="about-h" class="block">
+      <section aria-labelledby="about-h" class="block" id="about">
         <h2 id="about-h">About</h2>
         {profile.bio.map((p: string) => <p class="prose" set:html={withPreviews(p)} />)}
       </section>
 
-      <section aria-labelledby="edu-h" class="block">
+      <section aria-labelledby="edu-h" class="block" id="education">
         <h2 id="edu-h">Education</h2>
         <ul class="rows">
           {cv.education.map((e: any) => (
@@ -135,7 +147,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
           </p>
         </div>
 
-        <section aria-labelledby="pub-h" class="sub">
+        <section aria-labelledby="pub-h" class="sub" id="selected-publications">
           <h2 id="pub-h">Selected Publications</h2>
           {notes.publications && <p class="note" set:html={notes.publications} />}
           <ol class="pubs">
@@ -242,7 +254,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         </ul>
       </section>
 
-      <section aria-labelledby="awd-h" class="block">
+      <section aria-labelledby="awd-h" class="block" id="awards">
         <h2 id="awd-h">Awards</h2>
         <ul class="rows">
           {cv.awards.map((a: any) => (
@@ -282,8 +294,31 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
       </section>
 
       <footer class="foot">
-        <p>© {year} {profile.name} · Updated {updated}</p>
-        <p><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+        <div class="sitemap">
+          <button type="button" class="sitemap__toggle" aria-expanded="false" aria-controls="sitemap-panel">
+            Site map<span class="sitemap__chev" aria-hidden="true"></span>
+          </button>
+          <div class="sitemap__panel" id="sitemap-panel">
+            <nav class="sitemap__inner" aria-label="Site map">
+              <div>
+                <p class="sitemap__h">On this page</p>
+                <ul>{SITEMAP.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+              </div>
+              <div>
+                <p class="sitemap__h">Elsewhere</p>
+                <ul>
+                  {profile.links.map((l: any) => (
+                    <li><a href={l.url} {...(isMail(l.url) ? {} : { target: '_blank', rel: 'noopener noreferrer' })}>{l.label === 'CV' ? 'CV (PDF)' : l.label}<span class="arrow" aria-hidden="true"></span></a></li>
+                  ))}
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="foot__line">
+          <p>© {year} {profile.name} · Updated {updated}</p>
+          <p><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+        </div>
       </footer>
     </main>
 
@@ -331,6 +366,17 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
           btn.querySelector('.abs__label')!.textContent = open ? 'Read full abstract' : 'Hide full abstract';
         });
       });
+
+      /* ---- Site map ---- */
+      const smBtn = document.querySelector<HTMLButtonElement>('.sitemap__toggle')!;
+      const sm = smBtn.closest('.sitemap')!;
+      const setSm = (open: boolean) => { smBtn.setAttribute('aria-expanded', String(open)); sm.classList.toggle('is-open', open); };
+      smBtn.addEventListener('click', () => {
+        const open = smBtn.getAttribute('aria-expanded') !== 'true';
+        setSm(open);
+        if (open) setTimeout(() => sm.scrollIntoView({ block: 'end', behavior: reduce ? 'auto' : 'smooth' }), 120);
+      });
+      sm.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', () => setSm(false)));
 
       /* ---- Copy BibTeX ---- */
       document.querySelectorAll<HTMLButtonElement>('.copy').forEach((btn) => {
