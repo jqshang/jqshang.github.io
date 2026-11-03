@@ -9,7 +9,7 @@ import notesRaw from './notes.yaml?raw';
 
 export const profile = parse(profileRaw);
 export const previews: Record<string, { title: string; sub: string; body: string; url: string }> = parse(previewsRaw);
-export const publications = parse(publicationsRaw);
+export const publications = parse(publicationsRaw).filter((p: any) => !p.hidden);
 export const projects = parse(projectsRaw);
 export const cv = parse(cvRaw);
 export const music = parse(musicRaw);

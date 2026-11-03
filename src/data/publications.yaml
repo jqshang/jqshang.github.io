@@ -1,12 +1,16 @@
 # topics: tabular | causal | multi-agent | vision
 # first: indices of first/co-first authors (default [0]); marked with †
+# hidden: true keeps an entry out of the page (e.g. while under anonymous review)
+# summary: the two-sentence version shown first; abstract: full text behind "Read full abstract"
+#          (separate paragraphs with a blank line)
 - title: "Predict by Pointing: A Task-Agnostic Output Head for Tabular In-Context Learning"
+  hidden: true
   authors: [Qiuhao Zeng, Jerry Huang, Younwoo Choi, Jiaqi Shang, Rahul G. Krishnan]
   venue: ICLR 2027
   status: Under review
   year: 2027
   topics: [tabular]
-  summary: "TODO: add a two- or three-sentence abstract."
+  summary: ""
   links: []
 - title: Learning to Represent Social Information in Multi-Agent Reinforcement Learning for Self-Organized Systems
   authors: [Jiaqi Shang, Evan Grzeszkiewicz-O’Neill, Hao Ji, Bingling Huang]
@@ -15,9 +19,16 @@
   year: 2026
   topics: [multi-agent]
   summary: >-
-    How should cooperating agents represent their teammates? We compare three encodings of social
-    information for multi-agent reinforcement learning in a physics-based assembly task, and find
-    that agents develop specialized roles whose structure tracks team performance.
+    Should cooperating agents know who their teammates are? We treat agent identity as an explicit
+    social signal in multi-agent reinforcement learning and compare ways to represent it; on a
+    cooperative box-pushing assembly task, structured social information makes agents learn faster
+    and perform better as a team.
+  abstract: |-
+    Self-organizing systems (SoS) have emerged as a promising paradigm for enabling scalable and adaptive coordination in complex engineering tasks. Recent advances in multi-agent reinforcement learning (MARL) provide a powerful methodology for learning decentralized policies. However, existing approaches lack a deep understanding of social interactions, limiting their ability to effectively utilize rich social information.
+
+    This paper investigates how social learning can be systematically integrated into MARL by focusing on the representation of social information, particularly agent identity (ID). Prior studies have shown that team-level behaviors often evolve into distinct role specializations, suggesting that agent identity may play an important role in learning and coordination. However, how such information should be represented and incorporated into the learning process remains unclear. To address this, we conceptualize social capability as a spectrum and extend it by introducing agent identity as an explicit social signal. We further examine how different representation methods influence learning dynamics and team-level performance.
+
+    Experiments are conducted on a cooperative box-pushing assembly task with collision avoidance, which requires complex coordination and long-term strategy formation. The results demonstrate that incorporating structured social information improves learning efficiency and task performance, while revealing key mechanisms of social learning in multi-agent systems. This work provides new insights into socially-aware MARL and contributes to the design of self-organizing systems for complex engineering applications.
   links: []
 - title: "ERD: Extended RAW-Diffusion Framework for De-rendering sRGB Images"
   authors: [Jiaqi Shang, Yifan Qu, Jianbo Qi]
@@ -25,7 +36,13 @@
   status: Oral
   year: 2026
   topics: [vision]
-  summary: "TODO: add a two- or three-sentence abstract."
+  summary: >-
+    Recovering a camera's original RAW sensor data from an ordinary sRGB photo, without knowing
+    which camera took it. We add ControlNet guidance to RAW-Diffusion so it generalizes to unseen
+    sensors with no metadata, beating the baseline on Nikon and staying competitive on Canon, Leica,
+    and Sony.
+  abstract: |-
+    Recovering RAW sensor measurements from sRGB images is a central problem in computational photography, as RAW data preserves the true scene radiance prior to the nonlinear transformations introduced by a camera’s Image Signal Processing (ISP) pipeline. However, ISPs vary across different camera brands and models, making inverse ISP reconstruction particularly challenging when the sensor characteristics are unknown. Existing approaches often rely on metadata, modifiable ISP, or camera-specific training, which limits their ability to generalize across unseen devices. In this paper, we investigate a diffusion-based inverse ISP framework designed for cross-sensor RAW reconstruction. Building upon the RAW-Diffusion model, we incorporate a ControlNet-guided architecture that provides structured conditioning to improve generalization without requiring metadata at inference time. Using the MIT-Adobe FiveK dataset, we evaluate seven camera models, which is sufficient to test cross-sensor robustness. Our results demonstrate that the proposed ControlNet-enhanced model enhances reconstruction accuracy on unseen sensors, outperforming the baseline RAW-Diffusion model on the Nikon dataset and achieving competitive performance on Canon, Leica, and Sony. These findings highlight the potential of guidance-based diffusion models for practical, camera-agnostic inverse ISP.
   links: []
 - title: Basis Transformers for Multi-Task Tabular Regression
   authors: [Wei Min Loh, Jiaqi Shang, Pascal Poupart]
@@ -37,6 +54,8 @@
     A transformer for real-world tables: text features, a varying number of columns, missing and
     noisy values. Across 34 OpenML-CTR23 regression tasks it improves median R² by 0.338 with the
     lowest variance of any method, using five times fewer parameters than the strongest baseline.
+  abstract: |-
+    Dealing with tabular data is challenging due to partial information, noise, and heterogeneous structure. Existing techniques often struggle to simultaneously address key aspects of tabular data such as textual information, a variable number of columns, and unseen data without metadata besides column names. We propose a novel architecture, basis transformers, specifically designed to tackle these challenges while respecting inherent invariances in tabular data, including hierarchical structure and the representation of numeric values. We evaluate our design on a multi-task tabular regression benchmark, achieving an improvement of 0.338 in the median R² score and the lowest standard deviation across 34 tasks from the OpenML-CTR23 benchmark. Furthermore, our model has five times fewer parameters than the best-performing baseline and surpasses pretrained large language model baselines – even when initialized from randomized weights.
   links:
     - label: arXiv
       url: https://arxiv.org/abs/2506.06926

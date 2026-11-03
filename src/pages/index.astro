@@ -140,6 +140,18 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
                   <div class="pub__panel" id={`pub-${i}`}>
                     <div class="pub__panel-inner">
                       <p class="pub__summary">{p.summary}</p>
+                      {p.abstract && (
+                        <div class="abs">
+                          <button type="button" class="abs__toggle" aria-expanded="false" aria-controls={`abs-${i}`}>
+                            <span class="abs__label">Read full abstract</span>
+                          </button>
+                          <div class="abs__body" id={`abs-${i}`}>
+                            <div class="abs__inner">
+                              {p.abstract.split(/\n\s*\n/).map((para: string) => <p>{para.trim()}</p>)}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       {(p.links.length > 0 || p.bibtex) && (
                         <div class="pub__actions">
                           {p.links.map((l: any) => <a class="pill" href={l.url} target="_blank" rel="noopener noreferrer">{l.label}<span class="arrow" aria-hidden="true"></span></a>)}
@@ -300,6 +312,16 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
           const open = btn.getAttribute('aria-expanded') === 'true';
           btn.setAttribute('aria-expanded', String(!open));
           btn.closest('.pub')!.classList.toggle('is-open', !open);
+        });
+      });
+
+      /* ---- Full abstract toggle ---- */
+      document.querySelectorAll<HTMLButtonElement>('.abs__toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          btn.closest('.abs')!.classList.toggle('is-open', !open);
+          btn.querySelector('.abs__label')!.textContent = open ? 'Read full abstract' : 'Hide full abstract';
         });
       });
 

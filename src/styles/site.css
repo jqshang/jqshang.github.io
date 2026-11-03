@@ -265,6 +265,26 @@ h2 {
 .pub__panel-inner { min-height: 0; overflow: hidden; padding: 0 14px; }
 .pub__summary { padding-top: 10px; max-width: 70ch; opacity: 0; transform: translateY(-6px); transition: opacity 0.3s, transform 0.5s var(--out); }
 .pub.is-open .pub__summary { opacity: 1; transform: none; transition-delay: 0.08s; }
+.abs { padding-top: 10px; }
+.abs__toggle {
+  font-size: 0.8125rem; font-weight: 500; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 2px 0;
+}
+.abs__toggle::after {
+  content: ''; width: 0.5em; height: 0.5em;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.45s var(--spring);
+}
+.abs.is-open .abs__toggle::after { transform: translateY(1px) rotate(-135deg); }
+.abs__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--out); }
+.abs.is-open .abs__body { grid-template-rows: 1fr; }
+.abs__inner { min-height: 0; overflow: hidden; }
+.abs__inner p {
+  max-width: 70ch; font-size: 0.9375rem; color: var(--muted); line-height: 1.65;
+  margin-top: 10px;
+}
 .pub__actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 0 18px; }
 .pub__panel-inner > :last-child:not(.pub__actions) { padding-bottom: 18px; }
 .pill {
