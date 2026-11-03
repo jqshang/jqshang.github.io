@@ -432,6 +432,10 @@ a.pv { text-decoration-style: dotted; }
 .otc__dog img:active { animation: wag 0.5s var(--out); }
 @keyframes wag { 25% { transform: rotate(6deg); } 50% { transform: rotate(-6deg); } 75% { transform: rotate(3deg); } }
 .otc__note { color: var(--muted); font-size: 0.9375rem; margin-top: 4px; }
+.otc__art { display: grid; justify-items: center; gap: 6px; }
+.otc__credit { font-size: 0.75rem; color: var(--muted); text-align: center; }
+.otc__credit a { text-decoration-color: var(--faint); }
+.otc__credit a:hover { color: var(--accent); }
 @media (max-width: 560px) {
   .otc__dog { grid-template-columns: 120px minmax(0, 1fr); gap: 20px; }
   .otc__dog img { width: 120px; height: 120px; }
