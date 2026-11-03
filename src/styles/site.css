@@ -418,6 +418,25 @@ a.pv { text-decoration-style: dotted; }
   background: var(--bg) !important; color: var(--ink) !important; border-radius: 6px;
 }
 
+/* ---------- Off the clock: dog ---------- */
+.otc__dog {
+  margin: 56px 0 0;
+  display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; align-items: center;
+}
+.otc__dog img {
+  width: 200px; height: 200px; object-fit: contain;
+  transform-origin: 50% 90%;
+  transition: transform 0.6s var(--spring);
+}
+.otc__dog:hover img { transform: rotate(-4deg) scale(1.04); }
+.otc__dog img:active { animation: wag 0.5s var(--out); }
+@keyframes wag { 25% { transform: rotate(6deg); } 50% { transform: rotate(-6deg); } 75% { transform: rotate(3deg); } }
+.otc__note { color: var(--muted); font-size: 0.9375rem; margin-top: 4px; }
+@media (max-width: 560px) {
+  .otc__dog { grid-template-columns: 120px minmax(0, 1fr); gap: 20px; }
+  .otc__dog img { width: 120px; height: 120px; }
+}
+
 /* ---------- Footer ---------- */
 .foot { margin-top: 112px; padding-top: 24px; font-size: 0.875rem; color: var(--muted); }
 .foot__line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 24px; }

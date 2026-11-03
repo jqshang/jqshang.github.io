@@ -283,7 +283,9 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
       <!-- Off the clock -->
       <section aria-labelledby="otc-h" class="block" id="off-the-clock">
         <h2 id="otc-h">Off the clock</h2>
-        <p class="prose">Charlie Puth is my favourite artist. These are the albums I keep coming back to.</p>
+        <div class="otc">
+          <div class="otc__music">
+            <p class="prose">Charlie Puth is my favourite artist. These are the albums I keep coming back to.</p>
         <ul class="shelf">
           {music.map((m: any) => (
             <li class="record" style={`--sleeve: ${m.color}`}>
@@ -305,6 +307,15 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
             </li>
           ))}
         </ul>
+          </div>
+          <figure class="otc__dog">
+            <img src="/images/shiba.png" width="640" height="640" loading="lazy" alt="Illustration of a Shiba Inu in a headband, typing on a laptop" />
+            <figcaption>
+              <p class="prose">My favourite dog is the Shiba Inu.</p>
+              <p class="otc__note">Here's one working as hard as I am.</p>
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
       <!-- Visitor map (MapMyVisitors). The script inserts the map right after itself. -->
