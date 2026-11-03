@@ -235,6 +235,17 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
                 <p class="row__what">
                   {r.role}, <a class="pv" href={previews[r.preview]?.url} {...pv(r.preview)}>{r.org}</a>
                 </p>
+                {r.with?.length > 0 && (
+                  <p class="row__with">
+                    With{' '}
+                    {r.with.map((k: string, i: number) => (
+                      <>
+                        {i > 0 && (i === r.with.length - 1 ? ' and ' : ', ')}
+                        <a class="pv" href={previews[k]?.url} {...pv(k)} target="_blank" rel="noopener noreferrer">Prof. {previews[k]?.title}</a>
+                      </>
+                    ))}
+                  </p>
+                )}
                 <p class="row__note">{r.note}</p>
               </div>
             </li>

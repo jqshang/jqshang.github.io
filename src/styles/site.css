@@ -323,6 +323,8 @@ h2 {
 .row__what { font-weight: 500; }
 .row__what a { font-weight: 500; }
 .row__what--split { display: flex; justify-content: space-between; gap: 16px; font-weight: 400; }
+.row__with { font-size: 0.9375rem; color: var(--ink); margin-top: 2px; }
+.row__with a { font-weight: 400; }
 .amount { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .row__note { color: var(--muted); font-size: 0.9375rem; margin-top: 2px; max-width: 68ch; }
 a.pv { text-decoration-style: dotted; }

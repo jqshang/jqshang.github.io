@@ -1,37 +1,38 @@
 # Education: `programs` lines are shown in bold under the degree; `details` in grey.
+# Research: `preview` is the institution card; `with` lists supervisors by their key in previews.yaml.
 # Dates: `start` and `end` as "Mon YYYY". Leave out `end` for something still ongoing.
 research:
   - start: Apr 2026
     role: Visiting Graduate Student
     org: UC Riverside
-    preview: zhu
-    with: Yuanhang Zhu, Bingling Huang
+    preview: ucr
+    with: [zhu, huang]
     note: Reinforcement learning for fish-like swimmers in time-varying vortex flows.
   - start: Jan 2026
     role: Research Assistant
     org: California State University, Fullerton
-    preview: huang
-    with: Bingling Huang
+    preview: csuf
+    with: [huang]
     note: Multi-agent reinforcement learning for self-organized assembly.
   - start: Oct 2025
     role: Student Research Assistant
     org: University of Toronto
-    preview: krishnan
-    with: Rahul G. Krishnan
+    preview: uoft
+    with: [krishnan]
     note: Causal foundation models — scaling CausalPFN, calibrating TraCEE, the Virtual Cell Challenge.
   - start: Jan 2024
     end: Apr 2025
     role: Undergraduate Research Assistant
     org: University of Waterloo
-    preview: poupart
-    with: Pascal Poupart
+    preview: waterloo
+    with: [poupart]
     note: Basis transformers for multi-task tabular regression.
   - start: May 2024
     end: Aug 2024
     role: Undergraduate Research Scientist
     org: Vector Institute
     preview: vector
-    with: Pascal Poupart
+    with: [poupart]
     note: Contextual bandits with RBF-histogram reward models.
 industry:
   - start: May 2026
