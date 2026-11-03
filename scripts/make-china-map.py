@@ -90,14 +90,14 @@ for f in d['features']:
             inset.append(path(rdp_ring(ipts, 0.3)))
 seen = []
 for x, y in isles:
-    if all(abs(x - a) > 2.2 or abs(y - b) > 2.2 for a, b in seen): seen.append((x, y))
-isle_svg = ''.join(f'<circle cx="{x}" cy="{y}" r="1.6"/>' for x, y in seen)
+    if all((x - a) ** 2 + (y - b) ** 2 > 4.0 ** 2 for a, b in seen): seen.append((x, y))
+isle_svg = ''.join(f'<circle cx="{x}" cy="{y}" r="1.1"/>' for x, y in seen)
 bx, by = tx(proj(109.84, 40.66))
 svg = f'''<svg class="cmap" viewBox="0 0 {WT:.0f} {H:.0f}" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cmap-t">
 <title id="cmap-t">Map of China with Inner Mongolia outlined and Baotou marked</title>
 <path class="cmap__land" d="{''.join(main)}"/>
 <path class="cmap__nm" d="{''.join(imong)}"/>
-<g class="cmap__inset"><rect x="{ix0:.1f}" y="{iy0:.1f}" width="{IW:.1f}" height="{IH:.1f}" rx="3"/><path class="cmap__land" d="{''.join(inset)}"/><path class="cmap__dash" d="{''.join(dash)}"/><g class="cmap__isles">{isle_svg}</g></g>
+<defs><clipPath id="cmap-inset"><rect x="{ix0:.1f}" y="{iy0:.1f}" width="{IW:.1f}" height="{IH:.1f}" rx="3"/></clipPath></defs><g class="cmap__inset"><rect class="cmap__inset-bg" x="{ix0:.1f}" y="{iy0:.1f}" width="{IW:.1f}" height="{IH:.1f}" rx="3"/><g clip-path="url(#cmap-inset)"><path class="cmap__land" d="{''.join(inset)}"/><path class="cmap__dash" d="{''.join(dash)}"/><g class="cmap__isles">{isle_svg}</g></g><rect class="cmap__inset-frame" x="{ix0:.1f}" y="{iy0:.1f}" width="{IW:.1f}" height="{IH:.1f}" rx="3"/></g>
 <g class="cmap__pin" transform="translate({bx:.1f} {by:.1f})"><circle class="cmap__halo" r="16"/><circle class="cmap__dot" r="9"/></g>
 <text class="cmap__label" x="{bx + 22:.1f}" y="{by + 11:.1f}">Baotou 包头</text>
 </svg>'''
