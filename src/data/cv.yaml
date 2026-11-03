@@ -1,3 +1,4 @@
+# Education: `programs` lines are shown in bold under the degree; `details` in grey.
 # Dates: `start` and `end` as "Mon YYYY". Leave out `end` for something still ongoing.
 research:
   - start: Apr 2026
@@ -75,9 +76,10 @@ education:
     degree: Bachelor of Mathematics
     org: University of Waterloo
     preview: waterloo
-    details:
+    programs:
       - Double major in Computer Science and Statistics
       - Minor in Computational Mathematics
+    details:
       - GPA 89.51% · Excellent Standing and Term Distinction in every term
 awards:
   - year: 2026

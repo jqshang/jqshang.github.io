@@ -108,6 +108,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
               </span>
               <div>
                 <p class="row__what">{e.degree}, <a class="pv" href={previews[e.preview]?.url} {...pv(e.preview)}>{e.org}</a></p>
+                {e.programs && e.programs.map((x: string) => <p class="row__what">{x}</p>)}
                 {e.details ? (
                   <ul class="details">{e.details.map((d: string) => <li>{d}</li>)}</ul>
                 ) : e.note && <p class="row__note">{e.note}</p>}
