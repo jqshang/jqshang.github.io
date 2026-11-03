@@ -230,6 +230,33 @@ h2 {
 .filterable.is-out { grid-template-rows: 0fr; opacity: 0; transform: translateY(-4px); }
 .filterable.is-out .filterable__inner { padding-block: 0; }
 
+/* ---------- Hometown map (About) ---------- */
+.origin {
+  display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; align-items: center;
+  margin-bottom: 14px;
+}
+.origin__text { font-size: 1.125rem; }
+.origin__map { margin: 0; }
+.cmap { display: block; width: 100%; height: auto; overflow: visible; }
+.cmap__land { fill: color-mix(in srgb, var(--muted) 16%, var(--bg)); stroke: var(--bg); stroke-width: 1.4; }
+.cmap__nm {
+  fill: color-mix(in srgb, var(--accent) 16%, var(--bg)); stroke: var(--accent); stroke-width: 3; stroke-linejoin: round;
+  transition: fill 0.3s;
+}
+.cmap__inset rect { fill: none; stroke: var(--faint); stroke-width: 2; }
+.cmap__dash { fill: none; stroke: var(--muted); stroke-width: 2.2; stroke-linecap: round; }
+.cmap__dot { fill: var(--accent); stroke: var(--bg); stroke-width: 3; transition: r 0.4s var(--spring); }
+.cmap__halo { fill: var(--accent); opacity: 0.25; transform-box: fill-box; transform-origin: center; animation: pin 2.4s var(--out) infinite; }
+@keyframes pin { 0% { transform: scale(0.6); opacity: 0.35; } 80%, 100% { transform: scale(2.2); opacity: 0; } }
+.cmap__label { font: 600 32px var(--sans); fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 8px; stroke-linejoin: round; }
+.cmap__pin { transition: transform 0.45s var(--spring); }
+.origin__map.is-lit .cmap__nm { fill: color-mix(in srgb, var(--accent) 28%, var(--bg)); }
+.origin__map.is-lit .cmap__dot { r: 13; }
+@media (max-width: 560px) {
+  .origin { grid-template-columns: 1fr; gap: 16px; }
+  .origin__map { max-width: 340px; }
+}
+
 /* ---------- Publications ---------- */
 .pubs { margin-inline: -14px; }
 .pub__head {

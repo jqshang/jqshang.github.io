@@ -27,6 +27,8 @@ links:
 # Bio. [[key|text]] marks a hover preview (see previews.yaml); __text__ underlines for emphasis.
 bio:
   - >-
+    My name is Jiaqi Shang (尚嘉奇), and I'm from [[baotou|Baotou]], Inner Mongolia, in northern China.
+  - >-
     I'm a Master of Science in Applied Computing student at the [[uoft|University of Toronto]], where
     I work with [[krishnan|Prof. Rahul G. Krishnan]] on foundation models for tabular and causal
     data. I'm also a visiting graduate student at [[ucr|UC Riverside]] and a volunteer researcher at
