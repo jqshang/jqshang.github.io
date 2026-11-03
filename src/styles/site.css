@@ -10,7 +10,7 @@
   --accent-ink: #ffffff;
   --sel: #f4c9bb;
 
-  --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --serif: 'Gloock', 'Iowan Old Style', Georgia, serif;
   --sans: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   --script: 'Mea Culpa', 'Snell Roundhand', cursive;
 
@@ -134,7 +134,7 @@ h1 {
 /* ---------- Blocks ---------- */
 .block { margin-top: 88px; }
 h2 {
-  font: 400 1.75rem/1.1 var(--serif);
+  font: 400 1.625rem/1.15 var(--serif);
   letter-spacing: -0.005em;
   margin-bottom: 20px;
 }
