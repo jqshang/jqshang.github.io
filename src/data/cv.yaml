@@ -64,16 +64,21 @@ industry:
 education:
   - start: Sep 2025
     end: Dec 2026
-    degree: MSc in Applied Computing
+    expected: true
+    degree: Master of Science in Applied Computing
     org: University of Toronto
     preview: uoft
-    note: Expected December 2026. GPA 4.0/4.0.
+    details:
+      - GPA 4.0/4.0
   - start: Sep 2020
     end: Apr 2025
-    degree: BMath, Computer Science & Statistics
+    degree: Bachelor of Mathematics
     org: University of Waterloo
     preview: waterloo
-    note: Minor in Computational Mathematics. Term Distinction every term.
+    details:
+      - Double major in Computer Science and Statistics
+      - Minor in Computational Mathematics
+      - GPA 89.51% · Excellent Standing and Term Distinction in every term
 awards:
   - year: 2026
     name: Mitacs Accelerate Award
