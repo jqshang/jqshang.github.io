@@ -128,7 +128,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
                       {p.authors.map((a: string, k: number) => (
                         <>
                           {isMe(a) ? <strong>{a}</strong> : a}
-                          {(p.first ?? [0]).includes(k) && <sup class="dagger" title="First author">†</sup>}
+                          {(p.first ?? [0]).includes(k) && <span class="dagger" title="First author">†</span>}
                           {k < p.authors.length - 1 ? ', ' : ''}
                         </>
                       ))}
