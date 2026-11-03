@@ -299,7 +299,7 @@ h2 {
 
 /* ---------- Rows (projects, experience, education, awards) ---------- */
 .rows { display: grid; }
-.row__grid { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; padding-block: 10px; }
+.row__grid { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 16px; padding-block: 10px; }
 .row--tight { padding-block: 6px; }
 .row__when { color: var(--muted); font-size: 0.875rem; font-variant-numeric: tabular-nums; padding-top: 2px; display: flex; flex-direction: column; gap: 2px; }
 .live {
@@ -394,7 +394,7 @@ a.pv { text-decoration-style: dotted; }
   .intro { grid-template-columns: 1fr; gap: 28px; }
   .avatar { order: -1; width: 112px; height: 112px; border-radius: 16px; }
   .row__grid { grid-template-columns: 1fr; gap: 2px; }
-  .row__when { flex-direction: row; gap: 12px; }
+  .row__when { flex-direction: row; gap: 6px; }
   .shelf { gap: 12px; }
   .record__hit:hover .record__vinyl { transform: translateX(30%); }
   .block__head { display: grid; }

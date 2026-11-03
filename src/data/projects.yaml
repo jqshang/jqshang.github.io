@@ -1,11 +1,12 @@
 - title: Multi-agent reinforcement learning for fish navigation in flow
-  period: 2026–
+  start: Apr 2026
   topics: [multi-agent]
   summary: >-
     Self-propelled fish agents trained with PPO to navigate time-varying vortex flows, with an
     observation ablation that shows which flow features actually drive navigation.
 - title: Protein information flow via Granger causality
-  period: 2025
+  start: Sep 2025
+  end: Dec 2025
   topics: [causal]
   summary: >-
     Protein allostery as causal discovery on molecular-dynamics trajectories of adenylate kinase. A

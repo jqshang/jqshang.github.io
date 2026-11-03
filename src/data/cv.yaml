@@ -1,66 +1,75 @@
+# Dates: `start` and `end` as "Mon YYYY". Leave out `end` for something still ongoing.
 research:
-  - period: 2025–
-    role: Student Research Assistant
-    org: University of Toronto
-    preview: krishnan
-    with: Rahul G. Krishnan
-    note: Causal foundation models — scaling CausalPFN, calibrating TraCEE, the Virtual Cell Challenge.
-  - period: 2026–
+  - start: Apr 2026
     role: Visiting Graduate Student
     org: UC Riverside
     preview: zhu
     with: Yuanhang Zhu, Bingling Huang
     note: Reinforcement learning for fish-like swimmers in time-varying vortex flows.
-  - period: 2026–
+  - start: Jan 2026
     role: Research Assistant
     org: California State University, Fullerton
     preview: huang
     with: Bingling Huang
     note: Multi-agent reinforcement learning for self-organized assembly.
-  - period: 2024–25
+  - start: Oct 2025
+    role: Student Research Assistant
+    org: University of Toronto
+    preview: krishnan
+    with: Rahul G. Krishnan
+    note: Causal foundation models — scaling CausalPFN, calibrating TraCEE, the Virtual Cell Challenge.
+  - start: Jan 2024
+    end: Apr 2025
     role: Undergraduate Research Assistant
     org: University of Waterloo
     preview: poupart
     with: Pascal Poupart
     note: Basis transformers for multi-task tabular regression.
-  - period: 2024
+  - start: May 2024
+    end: Aug 2024
     role: Undergraduate Research Scientist
     org: Vector Institute
     preview: vector
     with: Pascal Poupart
     note: Contextual bandits with RBF-histogram reward models.
 industry:
-  - period: 2026–
+  - start: May 2026
     role: Data AI Platform Developer (Intern)
     org: Geotab
     url: https://www.geotab.com/
     note: GenAI gateway and agentic AI platform serving 3,500+ users.
-  - period: 2025–26
+  - start: Oct 2025
+    end: Sep 2026
     role: Machine Learning Researcher
     org: Orka
     note: GAN-based speech enhancement with a causal transformer U-Net.
-  - period: 2023
+  - start: May 2023
+    end: Dec 2023
     role: Full Stack Developer (Co-op)
     org: Aterlo Networks
     url: https://aterlo.com/
     note: Telemetry pipelines and tooling for 10M+ network devices.
-  - period: 2022
+  - start: Mar 2022
+    end: Aug 2022
     role: Data Engineer (Co-op)
     org: Tesla, Shanghai
     url: https://www.tesla.com/
     note: Seat-belt detection analytics over 10M+ events.
-  - period: 2021
+  - start: Sep 2021
+    end: Dec 2021
     role: Machine Learning Engineer (Co-op)
     org: iFlytek, Beijing
     url: https://www.iflytek.com/en/
     note: Chinese paraphrase generation with BERT back-translation.
 education:
-  - period: 2025–26
+  - start: Sep 2025
+    end: Dec 2026
     degree: MSc in Applied Computing
     org: University of Toronto
     preview: uoft
-    note: GPA 4.0/4.0.
-  - period: 2020–25
+    note: Expected December 2026. GPA 4.0/4.0.
+  - start: Sep 2020
+    end: Apr 2025
     degree: BMath, Computer Science & Statistics
     org: University of Waterloo
     preview: waterloo

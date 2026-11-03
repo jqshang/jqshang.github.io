@@ -5,9 +5,6 @@ import { profile, previews, publications, projects, cv, music, notes, withPrevie
 const icons = import.meta.glob('../icons/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const icon = (name: string) => icons[`../icons/${name}.svg`] ?? '';
 const isMail = (url: string) => url.startsWith('mailto:');
-/** "2026–" (open-ended) → ongoing */
-const ongoing = (period: string) => /[–-]\s*$/.test(String(period));
-const start = (period: string) => String(period).replace(/\s*[–-]\s*$/, '');
 
 const TOPICS = [
   { id: 'tabular', label: 'Tabular' },
@@ -176,7 +173,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
             {projects.map((p: any) => (
               <li class="row filterable" data-kind="proj" data-topics={p.topics.join(' ')}>
                 <div class="filterable__inner row__grid">
-                  <span class="row__when">{ongoing(p.period) ? <><span>{start(p.period)}</span><span class="live">Ongoing</span></> : p.period}</span>
+                  <span class="row__when"><span>{p.start} –</span>{p.end ? <span>{p.end}</span> : <span class="live">Ongoing</span>}</span>
                   <div>
                     <p class="row__what">{p.title}</p>
                     <p class="row__note">{p.summary}</p>
@@ -196,7 +193,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         <ul class="rows">
           {cv.research.map((r: any) => (
             <li class="row row__grid">
-              <span class="row__when">{ongoing(r.period) ? <><span>{start(r.period)}</span><span class="live">Ongoing</span></> : r.period}</span>
+              <span class="row__when"><span>{r.start} –</span>{r.end ? <span>{r.end}</span> : <span class="live">Ongoing</span>}</span>
               <div>
                 <p class="row__what">
                   {r.role}, <a class="pv" href={previews[r.preview]?.url} {...pv(r.preview)}>{r.org}</a>
@@ -213,7 +210,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         <ul class="rows">
           {cv.industry.map((r: any) => (
             <li class="row row__grid">
-              <span class="row__when">{ongoing(r.period) ? <><span>{start(r.period)}</span><span class="live">Ongoing</span></> : r.period}</span>
+              <span class="row__when"><span>{r.start} –</span>{r.end ? <span>{r.end}</span> : <span class="live">Ongoing</span>}</span>
               <div>
                 <p class="row__what">{r.role}, {r.url ? <a href={r.url}>{r.org}</a> : r.org}</p>
                 <p class="row__note">{r.note}</p>
@@ -228,7 +225,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         <ul class="rows">
           {cv.education.map((e: any) => (
             <li class="row row__grid">
-              <span class="row__when">{e.period}</span>
+              <span class="row__when"><span>{e.start} –</span>{e.end ? <span>{e.end}</span> : <span class="live">Ongoing</span>}</span>
               <div>
                 <p class="row__what">{e.degree}, <a class="pv" href={previews[e.preview]?.url} {...pv(e.preview)}>{e.org}</a></p>
                 <p class="row__note">{e.note}</p>
