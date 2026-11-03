@@ -60,15 +60,17 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
     <main id="main" class="col">
       <!-- Intro -->
       <header class="intro">
-        <img class="avatar" src={profile.photo} width="160" height="160" alt={`Photo of ${profile.name}`} />
-        <h1>{profile.name}</h1>
-        <p class="pitch">{profile.pitch}</p>
-        <p class="role">{profile.role}</p>
-        <ul class="links">
-          {profile.links.map((l: any) => (
-            <li><a href={l.url}>{l.label}<span class="arrow" aria-hidden="true"></span></a></li>
-          ))}
-        </ul>
+        <div class="intro__text">
+          <h1>{profile.name}</h1>
+          <p class="pitch">{profile.pitch}</p>
+          <p class="role">{profile.role}</p>
+          <ul class="links">
+            {profile.links.map((l: any) => (
+              <li><a href={l.url}>{l.label}<span class="arrow" aria-hidden="true"></span></a></li>
+            ))}
+          </ul>
+        </div>
+        <img class="avatar" src={profile.photo} width="440" height="440" alt={`Photo of ${profile.name}`} />
       </header>
 
       <!-- About -->
