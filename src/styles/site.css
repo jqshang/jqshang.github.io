@@ -235,7 +235,6 @@ h2 {
   display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; align-items: center;
   margin-bottom: 14px;
 }
-.origin__text { font-size: 1.125rem; }
 .origin__map { margin: 0; }
 .cmap { display: block; width: 100%; height: auto; overflow: visible; }
 .cmap__land { fill: color-mix(in srgb, var(--muted) 16%, var(--bg)); stroke: var(--bg); stroke-width: 1.4; }
