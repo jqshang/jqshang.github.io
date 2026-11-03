@@ -15,6 +15,7 @@ const SITEMAP = [
   { href: '#industry', label: 'Industry' },
   { href: '#awards', label: 'Awards' },
   { href: '#off-the-clock', label: 'Off the clock' },
+  { href: '#visitors', label: 'Visitors' },
 ];
 
 const TOPICS = [
@@ -291,6 +292,26 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
             </li>
           ))}
         </ul>
+      </section>
+
+      <!-- Visitor map (MapMyVisitors). The script inserts the map right after itself. -->
+      <section aria-labelledby="vis-h" class="block" id="visitors">
+        <h2 id="vis-h">Visitors</h2>
+        <p class="prose">Where people have visited this page from.</p>
+        <div class="visitors">
+          <p class="visitors__local">The visitor map loads on the live site only, so local previews don't count as visits.</p>
+          <script is:inline>
+            // Load MapMyVisitors only on the published site. The widget inserts itself after #mapmyvisitors.
+            if (location.hostname === 'jqshang.github.io') {
+              const box = document.currentScript.parentElement;
+              box.querySelector('.visitors__local')?.remove();
+              const s = document.createElement('script');
+              s.id = 'mapmyvisitors';
+              s.src = 'https://mapmyvisitors.com/map.js?d=5h49NF9-cTbhK6yDr0mxxi2srP2bPs2On7WEatkTeFs&cl=d8cfc2&co=efebe4&ct=69635a&w=a';
+              box.appendChild(s);
+            }
+          </script>
+        </div>
       </section>
 
       <footer class="foot">

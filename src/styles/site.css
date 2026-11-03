@@ -360,6 +360,20 @@ a.pv { text-decoration-style: dotted; }
 .record__cap { margin-top: 12px; font-size: 0.875rem; display: grid; }
 .record__cap span:last-child { color: var(--muted); }
 
+/* ---------- Visitor map ----------
+   MapMyVisitors draws its own widget; these overrides bring it into the page's palette.
+   Land colour comes from the `cl` parameter in the embed URL. */
+.visitors { margin-top: 20px; border-radius: 14px; overflow: hidden; background: var(--surface); min-height: 120px; }
+.visitors__local { padding: 48px 24px; text-align: center; color: var(--muted); font-size: 0.875rem; }
+.visitors .mapmyvisitors-map-control { display: block; margin: 0 auto; text-decoration: none; }
+.visitors .mapmyvisitors-map-container { background-color: var(--surface) !important; padding-top: 10px; }
+.visitors .mpmvs { color: var(--muted) !important; font-family: var(--sans) !important; font-size: 0.8125rem !important; }
+.visitors .mapmyvisitors-visitors { color: var(--ink) !important; font-weight: 500; }
+.visitors svg circle { fill: var(--accent) !important; stroke: var(--bg) !important; }
+.visitors .jvectormap-zoomin, .visitors .jvectormap-zoomout {
+  background: var(--bg) !important; color: var(--ink) !important; border-radius: 6px;
+}
+
 /* ---------- Footer ---------- */
 .foot { margin-top: 112px; padding-top: 24px; font-size: 0.875rem; color: var(--muted); }
 .foot__line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 24px; }
