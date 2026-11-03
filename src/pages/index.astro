@@ -2,6 +2,10 @@
 import '../styles/site.css';
 import { profile, previews, publications, projects, cv, music, withPreviews } from '../data/load';
 
+const icons = import.meta.glob('../icons/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+const icon = (name: string) => icons[`../icons/${name}.svg`] ?? '';
+const isMail = (url: string) => url.startsWith('mailto:');
+
 const TOPICS = [
   { id: 'tabular', label: 'Tabular' },
   { id: 'causal', label: 'Causal' },
@@ -68,7 +72,16 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
           </p>
           <ul class="links">
             {profile.links.map((l: any) => (
-              <li><a href={l.url}>{l.label}<span class="arrow" aria-hidden="true"></span></a></li>
+              <li>
+                <a
+                  class="icon-link"
+                  href={l.url}
+                  aria-label={l.label}
+                  data-label={l.label}
+                  {...(isMail(l.url) ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                  set:html={icon(l.icon)}
+                />
+              </li>
             ))}
           </ul>
         </div>

@@ -131,9 +131,29 @@ h1 {
   font-size: 1.375rem; line-height: 1.4; letter-spacing: 0.06em;
 }
 .motto__en { font-size: 1.0625rem; color: var(--muted); }
-.links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 24px; }
-.links a { text-decoration: none; color: var(--muted); transition: color 0.2s; }
-.links a:hover { color: var(--accent); }
+.links { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 24px; margin-left: -10px; }
+.icon-link {
+  position: relative;
+  display: grid; place-items: center;
+  width: 42px; height: 42px; border-radius: 12px;
+  color: var(--muted);
+  transition: color 0.2s, background-color 0.2s, transform 0.45s var(--spring);
+}
+.icon-link svg { width: 21px; height: 21px; }
+.icon-link:hover { color: var(--accent); background: var(--surface); transform: translateY(-2px); }
+.icon-link:active { transform: scale(0.92); }
+/* label tooltip on hover/focus */
+.icon-link::after {
+  content: attr(data-label);
+  position: absolute; top: calc(100% + 6px); left: 50%;
+  translate: -50% 0;
+  font-size: 0.8125rem; white-space: nowrap;
+  padding: 3px 8px; border-radius: 6px;
+  background: var(--ink); color: var(--bg);
+  opacity: 0; scale: 0.9; pointer-events: none;
+  transition: opacity 0.15s, scale 0.35s var(--spring);
+}
+.icon-link:hover::after, .icon-link:focus-visible::after { opacity: 1; scale: 1; }
 
 /* ---------- Blocks ---------- */
 .block { margin-top: 88px; }

@@ -10,14 +10,19 @@ email: jqshang@cs.toronto.edu
 cv: /cv.pdf
 links:
   - label: Email
+    icon: mail
     url: mailto:jqshang@cs.toronto.edu
   - label: Scholar
+    icon: googlescholar
     url: https://scholar.google.ca/citations?user=X4h0EnIAAAAJ&hl=en
   - label: GitHub
+    icon: github
     url: https://github.com/jqshang
   - label: LinkedIn
+    icon: linkedin
     url: https://www.linkedin.com/in/charlesshang11
   - label: CV
+    icon: file-text
     url: /cv.pdf
 # Placeholder bio — rewrite later. [[key|text]] marks a hover preview (see previews.yaml).
 bio:
