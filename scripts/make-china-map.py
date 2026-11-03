@@ -5,8 +5,7 @@ Usage:
   python3 scripts/make-china-map.py china.json src/assets/china-map.svg
 
 Albers projection, simplified outlines, Inner Mongolia (150000) highlighted, Baotou pinned,
-South China Sea in an inset. After regenerating, the pin radii/label offset were enlarged by hand
-(see git history of china-map.svg).
+South China Sea in an inset. Small islands are drawn as dots so they stay visible at small sizes.
 """
 import json, math, sys
 src, out = sys.argv[1], sys.argv[2]
@@ -55,13 +54,13 @@ def tx(p): return ((p[0] - minx) * s, (maxy - p[1]) * s)
 ib = (105.5, 125.0, 2.5, 24.5)
 ip = [proj(ib[0], ib[2]), proj(ib[1], ib[2]), proj(ib[0], ib[3]), proj(ib[1], ib[3])]
 iminx = min(p[0] for p in ip); imaxx = max(p[0] for p in ip); iminy = min(p[1] for p in ip); imaxy = max(p[1] for p in ip)
-IW = W * 0.14; isc = IW / (imaxx - iminx); IH = (imaxy - iminy) * isc
-WT = W + 44
+IW = W * 0.19; isc = IW / (imaxx - iminx); IH = (imaxy - iminy) * isc
+WT = W + 70
 ix0, iy0 = WT - IW - 2, H - IH - 2
 def itx(p): return (ix0 + (p[0] - iminx) * isc, iy0 + (imaxy - p[1]) * isc)
 def path(pts, closed=True):
     return 'M' + 'L'.join(f'{x:.1f},{y:.1f}' for x, y in pts) + ('Z' if closed else '')
-main, imong, inset, dash = [], [], [], []
+main, imong, inset, dash, isles = [], [], [], [], []
 for f in d['features']:
     g = f['geometry']
     if not g: continue
@@ -72,24 +71,35 @@ for f in d['features']:
             dash.append(path(rdp_ring(pts, 0.15))); continue
         if all(la < 17.5 for lo, la in r):
             pts = [itx(proj(lo, la)) for lo, la in r]
-            if len(pts) >= 3: inset.append(path(rdp_ring(pts, 0.05) if len(pts) > 4 else pts))
+            cx = sum(x for x, _ in pts) / len(pts); cy = sum(y for _, y in pts) / len(pts)
+            isles.append((round(cx, 1), round(cy, 1)))
             continue
         pts = [tx(proj(lo, la)) for lo, la in r]
         simp = rdp_ring(pts, 0.6)
-        if len(simp) < 4: continue
+        if len(simp) < 4:
+            # keep only outlying islands as dots: Dongsha, and Diaoyu/Chiwei east of Taiwan
+            lo_c = sum(lo for lo, _ in r) / len(r); la_c = sum(la for _, la in r) / len(r)
+            if (115.5 < lo_c < 117.5 and 20 < la_c < 21.5) or (lo_c > 123 and 25 < la_c < 26.5):
+                cx = sum(x for x, _ in pts) / len(pts); cy = sum(y for _, y in pts) / len(pts)
+                isles.append((round(cx, 1), round(cy, 1)))
+            continue
         (imong if code == '150000' else main).append(path(simp))
         # mainland shown faintly in the inset too
         if code in ('440000', '450000', '460000', '350000', '710000', '530000'):
             ipts = [itx(proj(lo, la)) for lo, la in r]
             inset.append(path(rdp_ring(ipts, 0.3)))
+seen = []
+for x, y in isles:
+    if all(abs(x - a) > 2.2 or abs(y - b) > 2.2 for a, b in seen): seen.append((x, y))
+isle_svg = ''.join(f'<circle cx="{x}" cy="{y}" r="1.6"/>' for x, y in seen)
 bx, by = tx(proj(109.84, 40.66))
 svg = f'''<svg class="cmap" viewBox="0 0 {WT:.0f} {H:.0f}" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cmap-t">
 <title id="cmap-t">Map of China with Inner Mongolia outlined and Baotou marked</title>
 <path class="cmap__land" d="{''.join(main)}"/>
 <path class="cmap__nm" d="{''.join(imong)}"/>
-<g class="cmap__inset"><rect x="{ix0:.1f}" y="{iy0:.1f}" width="{IW:.1f}" height="{IH:.1f}" rx="3"/><path class="cmap__land" d="{''.join(inset)}"/><path class="cmap__dash" d="{''.join(dash)}"/></g>
-<g class="cmap__pin" transform="translate({bx:.1f} {by:.1f})"><circle class="cmap__halo" r="9"/><circle class="cmap__dot" r="4.5"/></g>
-<text class="cmap__label" x="{bx + 12:.1f}" y="{by + 5:.1f}">Baotou 包头</text>
+<g class="cmap__inset"><rect x="{ix0:.1f}" y="{iy0:.1f}" width="{IW:.1f}" height="{IH:.1f}" rx="3"/><path class="cmap__land" d="{''.join(inset)}"/><path class="cmap__dash" d="{''.join(dash)}"/><g class="cmap__isles">{isle_svg}</g></g>
+<g class="cmap__pin" transform="translate({bx:.1f} {by:.1f})"><circle class="cmap__halo" r="16"/><circle class="cmap__dot" r="9"/></g>
+<text class="cmap__label" x="{bx + 22:.1f}" y="{by + 11:.1f}">Baotou 包头</text>
 </svg>'''
 open(out, 'w').write(svg)
 print(f'{W}x{H:.0f}', len(svg), 'bytes')
