@@ -96,6 +96,21 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         {profile.bio.map((p: string) => <p class="prose" set:html={withPreviews(p)} />)}
       </section>
 
+      <section aria-labelledby="edu-h" class="block">
+        <h2 id="edu-h">Education</h2>
+        <ul class="rows">
+          {cv.education.map((e: any) => (
+            <li class="row row__grid">
+              <span class="row__when"><span>{e.start} –</span>{e.end ? <span>{e.end}</span> : <span class="live">Ongoing</span>}</span>
+              <div>
+                <p class="row__what">{e.degree}, <a class="pv" href={previews[e.preview]?.url} {...pv(e.preview)}>{e.org}</a></p>
+                <p class="row__note">{e.note}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <!-- Publications + projects share one filter. The bar is sticky across both and leaves after projects. -->
       <div class="filtered block" id="publications">
         <div class="filterbar" role="region" aria-label="Filter publications and projects by topic">
@@ -214,21 +229,6 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
               <div>
                 <p class="row__what">{r.role}, {r.url ? <a href={r.url}>{r.org}</a> : r.org}</p>
                 <p class="row__note">{r.note}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section aria-labelledby="edu-h" class="block">
-        <h2 id="edu-h">Education</h2>
-        <ul class="rows">
-          {cv.education.map((e: any) => (
-            <li class="row row__grid">
-              <span class="row__when"><span>{e.start} –</span>{e.end ? <span>{e.end}</span> : <span class="live">Ongoing</span>}</span>
-              <div>
-                <p class="row__what">{e.degree}, <a class="pv" href={previews[e.preview]?.url} {...pv(e.preview)}>{e.org}</a></p>
-                <p class="row__note">{e.note}</p>
               </div>
             </li>
           ))}
