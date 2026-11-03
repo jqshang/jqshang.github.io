@@ -1,7 +1,6 @@
 ---
 import '../styles/site.css';
 import { profile, previews, publications, projects, cv, music, notes, visitors, withPreviews } from '../data/load';
-import chinaMap from '../assets/china-map.svg?raw';
 const hex = (c: unknown) => String(c).replace('#', '').padStart(6, '0');
 const visitorMapSrc = `https://mapmyvisitors.com/map.js?d=${visitors.id}&cl=${hex(visitors.colors.land)}&co=${hex(visitors.colors.ocean)}&ct=${hex(visitors.colors.text)}&w=a`;
 
@@ -109,11 +108,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
       <!-- About -->
       <section aria-labelledby="about-h" class="block" id="about">
         <h2 id="about-h">About</h2>
-        <div class="origin">
-          <p class="prose origin__text" set:html={withPreviews(profile.bio[0])} />
-          <figure class="origin__map" set:html={chinaMap} />
-        </div>
-        {profile.bio.slice(1).map((p: string) => <p class="prose" set:html={withPreviews(p)} />)}
+{profile.bio.map((p: string) => <p class="prose" set:html={withPreviews(p)} />)}
       </section>
 
       <section aria-labelledby="edu-h" class="block" id="education">
@@ -439,15 +434,6 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         visBtn.setAttribute('aria-expanded', String(open));
         visBtn.closest('.vis')!.classList.toggle('is-open', open);
         visBtn.querySelector('.vis__hint')!.textContent = open ? 'Hide map' : 'Show map';
-      });
-
-      /* ---- Hometown: hovering "Baotou" lights up the pin ---- */
-      const mapEl = document.querySelector('.origin__map');
-      document.querySelectorAll('[data-preview="baotou"]').forEach((a) => {
-        a.addEventListener('pointerenter', () => mapEl?.classList.add('is-lit'));
-        a.addEventListener('pointerleave', () => mapEl?.classList.remove('is-lit'));
-        a.addEventListener('focus', () => mapEl?.classList.add('is-lit'));
-        a.addEventListener('blur', () => mapEl?.classList.remove('is-lit'));
       });
 
       /* ---- Site map ---- */
