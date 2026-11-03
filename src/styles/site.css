@@ -75,7 +75,7 @@ a:hover .arrow { transform: translate(2px, -2px); }
 
 /* ---------- Column ---------- */
 .col {
-  max-width: 640px;
+  max-width: 760px;
   margin: 0 auto;
   padding: clamp(64px, 12vh, 128px) 24px 64px;
 }
@@ -116,7 +116,7 @@ h1 {
   font: 400 clamp(2.75rem, 2rem + 3vw, 3.5rem)/1 var(--serif);
   letter-spacing: -0.01em;
 }
-.pitch { margin-top: 18px; font-size: 1.1875rem; line-height: 1.45; max-width: 34ch; }
+.pitch { margin-top: 18px; font-size: 1.1875rem; line-height: 1.45; max-width: 42ch; }
 .role { margin-top: 8px; color: var(--muted); }
 .links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 24px; }
 .links a { text-decoration: none; color: var(--muted); transition: color 0.2s; }
@@ -131,6 +131,7 @@ h2 {
 }
 .block__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 20px; margin-bottom: 20px; }
 .block__head h2 { margin-bottom: 0; }
+.prose { max-width: 70ch; }
 .prose + .prose { margin-top: 14px; }
 .prose a.pv { text-decoration-style: dotted; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); }
 .empty { color: var(--muted); padding: 8px 0; }
@@ -169,7 +170,7 @@ h2 {
   transition: background-color 0.2s;
 }
 .pub__head:hover, .pub.is-open .pub__head { background: var(--surface); }
-.pub__title { font-weight: 500; line-height: 1.4; text-wrap: balance; }
+.pub__title { font-weight: 500; line-height: 1.4; text-wrap: pretty; }
 .pub__meta { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--muted); order: -1; }
 .pub__authors { font-size: 0.875rem; color: var(--muted); }
 .pub__authors strong { color: var(--ink); font-weight: 500; }
@@ -192,7 +193,7 @@ h2 {
 .pub__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--out); }
 .pub.is-open .pub__panel { grid-template-rows: 1fr; }
 .pub__panel-inner { min-height: 0; overflow: hidden; padding: 0 14px; }
-.pub__summary { padding-top: 10px; max-width: 62ch; opacity: 0; transform: translateY(-6px); transition: opacity 0.3s, transform 0.5s var(--out); }
+.pub__summary { padding-top: 10px; max-width: 70ch; opacity: 0; transform: translateY(-6px); transition: opacity 0.3s, transform 0.5s var(--out); }
 .pub.is-open .pub__summary { opacity: 1; transform: none; transition-delay: 0.08s; }
 .pub__actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 0 18px; }
 .pub__panel-inner > :last-child:not(.pub__actions) { padding-bottom: 18px; }
@@ -215,7 +216,7 @@ h2 {
 .row__what a { font-weight: 500; }
 .row__what--split { display: flex; justify-content: space-between; gap: 16px; font-weight: 400; }
 .amount { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.row__note { color: var(--muted); font-size: 0.9375rem; margin-top: 2px; max-width: 58ch; }
+.row__note { color: var(--muted); font-size: 0.9375rem; margin-top: 2px; max-width: 68ch; }
 a.pv { text-decoration-style: dotted; }
 
 /* ---------- Off the clock: the record shelf ---------- */
