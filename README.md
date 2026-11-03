@@ -24,5 +24,5 @@ npm run dev        # http://localhost:4321, live reload
 npm run build && npm run preview   # exactly what gets published
 ```
 
-`legacy/` holds the content of the previous AcademicPages site (not published). The old site
-itself is tagged `v1-academicpages`.
+The previous AcademicPages site is preserved in git under the tag `v1-academicpages`
+(`git checkout v1-academicpages` to look at it).
