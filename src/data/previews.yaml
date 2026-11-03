@@ -24,6 +24,11 @@ csuf:
   sub: Fullerton, California
   body: Volunteer research assistant, Department of Engineering, since January 2026.
   url: https://www.fullerton.edu/
+basis:
+  title: Basis Transformers for Multi-Task Tabular Regression
+  sub: Wei Min Loh, Jiaqi Shang, Pascal Poupart · arXiv 2025
+  body: Improves median R² by 0.338 across 34 OpenML-CTR23 tasks, with five times fewer parameters than the strongest baseline.
+  url: https://arxiv.org/abs/2506.06926
 uoft:
   title: University of Toronto
   sub: Toronto, Canada

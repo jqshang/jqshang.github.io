@@ -36,6 +36,8 @@ bio:
   - >-
     Before that, I studied computer science and statistics at the [[waterloo|University of Waterloo]],
     and did research with [[poupart|Prof. Pascal Poupart]] at Waterloo and the [[vector|Vector Institute]].
+    Together we developed [[basis|Basis Transformers]], a model that learns across many regression
+    tasks on messy real-world tables, with text features, varying columns, and missing values.
   - >-
     I use AI in almost everything I do, from my daily workflow to my research projects, and it has
     surprised me. On anything that comes down to memory and pattern, today's models are far better
