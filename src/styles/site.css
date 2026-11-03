@@ -198,17 +198,12 @@ h2 {
 .sub + .sub { margin-top: 72px; }
 .note { font-size: 0.8125rem; color: var(--muted); margin: -10px 0 16px; }
 .dagger {
-  display: inline-block;
-  width: 0.5em; height: 0.82em;
-  margin-left: 2px;
-  vertical-align: 0.28em;
-  line-height: 1; font-size: 0.95em;
-  color: transparent; overflow: hidden; /* the † stays in the text for copy and screen readers */
-  background: var(--accent);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E%3Cpath d='M5 1v14M1.5 5h7' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E%3Cpath d='M5 1v14M1.5 5h7' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  color: var(--accent);
+  font: 700 1.05em/0 'Libre Baskerville', Georgia, serif; /* a sword-shaped dagger, not a cross */
+  vertical-align: 0.25em;
+  margin-left: 1px;
 }
-.note .dagger { margin: 0 4px 0 0; }
+.note .dagger { margin: 0 3px 0 0; }
 .filtered__end { border: 0; height: 1px; background: var(--faint); margin: 64px 0 0; }
 
 /* ---------- Chips ---------- */
