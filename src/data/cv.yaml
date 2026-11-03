@@ -38,7 +38,7 @@ industry:
   - start: May 2026
     role: Data AI Platform Developer (Intern)
     org: Geotab, Toronto
-    url: https://www.geotab.com/
+    preview: geotab
     note: GenAI gateway and agentic AI platform serving 3,500+ users.
   - start: Oct 2025
     end: Sep 2026
@@ -49,19 +49,19 @@ industry:
     end: Dec 2023
     role: Full Stack Developer (Co-op)
     org: Aterlo Networks, Waterloo
-    url: https://aterlo.com/
+    preview: aterlo
     note: Telemetry pipelines and tooling for 10M+ network devices.
   - start: Mar 2022
     end: Aug 2022
     role: Data Engineer (Co-op)
     org: Tesla, Shanghai
-    url: https://www.tesla.com/
+    preview: tesla
     note: Seat-belt detection analytics over 10M+ events, and a Django and MySQL web portal for HR recruiting data.
   - start: Sep 2021
     end: Dec 2021
     role: Machine Learning Engineer (Co-op)
     org: iFlytek, Beijing
-    url: https://www.iflytek.com/en/
+    preview: iflytek
     note: Chinese paraphrase generation with BERT back-translation.
 education:
   - start: Sep 2025

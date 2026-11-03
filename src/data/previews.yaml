@@ -24,6 +24,26 @@ csuf:
   sub: Fullerton, California
   body: Volunteer research assistant, Department of Engineering, since January 2026.
   url: https://www.fullerton.edu/
+geotab:
+  title: Geotab
+  sub: Toronto, Canada
+  body: Connected-vehicle and fleet telematics company. Data AI Platform Developer intern since May 2026.
+  url: https://www.geotab.com/
+aterlo:
+  title: Aterlo Networks
+  sub: Waterloo, Canada
+  body: Network management software for fixed-wireless and fiber internet providers. Full stack developer co-op, 2023.
+  url: https://aterlo.com/
+tesla:
+  title: Tesla
+  sub: Shanghai, China
+  body: Electric vehicles and clean energy. Data engineer co-op in Shanghai, 2022.
+  url: https://www.tesla.com/
+iflytek:
+  title: iFlytek
+  sub: Beijing, China
+  body: AI company known for speech and language technology. Machine learning engineer co-op, 2021.
+  url: https://www.iflytek.com/en/
 basis:
   title: Basis Transformers for Multi-Task Tabular Regression
   sub: Wei Min Loh, Jiaqi Shang, Pascal Poupart · arXiv 2025
