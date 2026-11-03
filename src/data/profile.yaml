@@ -24,13 +24,25 @@ links:
   - label: CV
     text: CV
     url: /cv.pdf
-# Placeholder bio — rewrite later. [[key|text]] marks a hover preview (see previews.yaml).
+# Bio. [[key|text]] marks a hover preview (see previews.yaml).
 bio:
   - >-
     I'm a Master of Science in Applied Computing student at the [[uoft|University of Toronto]], where
     I work with [[krishnan|Prof. Rahul G. Krishnan]] on foundation models for tabular and causal
-    data. I'm also a visiting graduate student at [[ucr|UC Riverside]], working on multi-agent
-    reinforcement learning with [[huang|Prof. Bingling Huang]].
+    data. I'm also a visiting graduate student at [[ucr|UC Riverside]] and a volunteer researcher at
+    [[csuf|Cal State Fullerton]], working with [[zhu|Prof. Yuanhang Zhu]] and
+    [[huang|Prof. Bingling Huang]] on multi-agent reinforcement learning and on agents that learn to
+    swim through complex fluid flows.
   - >-
-    Before that, I studied computer science and statistics at the [[waterloo|University of Waterloo]]
+    Before that, I studied computer science and statistics at the [[waterloo|University of Waterloo]],
     and did research with [[poupart|Prof. Pascal Poupart]] at Waterloo and the [[vector|Vector Institute]].
+  - >-
+    I use AI in almost everything I do, from my daily workflow to my research projects, and it has
+    surprised me. On anything that comes down to memory and pattern, today's models are far better
+    than I expected; where they still fall short is design, deciding what is worth building and why.
+    That is exactly why I want to go deeper into research: to spend my time on the creative part, to
+    understand the theory underneath rather than only apply it, and to feel the beauty where
+    mathematics, computing, science, and the humanities meet.
+  - >-
+    Above all, I hope my work helps people find a little more joy, live their lives more fully, and
+    savour the time they have.

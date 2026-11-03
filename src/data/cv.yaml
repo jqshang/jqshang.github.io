@@ -8,8 +8,9 @@ research:
   - period: 2026–
     role: Visiting Graduate Student
     org: UC Riverside
-    preview: ucr
-    note: Department of Mechanical Engineering.
+    preview: zhu
+    with: Yuanhang Zhu
+    note: Reinforcement learning for fish-like swimmers in time-varying vortex flows.
   - period: 2026–
     role: Research Assistant
     org: Cal State Fullerton
