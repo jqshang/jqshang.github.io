@@ -1,0 +1,14 @@
+# PLACEHOLDERS — replace with real albums. `cover` is optional (put square images in public/images/albums/);
+# without it, a coloured sleeve with the title is drawn.
+- title: Album One
+  artist: Artist placeholder
+  color: "#e4572e"
+  url: ""
+- title: Album Two
+  artist: Artist placeholder
+  color: "#2b4c7e"
+  url: ""
+- title: Album Three
+  artist: Artist placeholder
+  color: "#d9a441"
+  url: ""

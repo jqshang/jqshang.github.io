@@ -1,11 +1,41 @@
+# topics: tabular | causal | multi-agent | vision
+- title: "Predict by Pointing: A Task-Agnostic Output Head for Tabular In-Context Learning"
+  authors: [Qiuhao Zeng, Jerry Huang, Younwoo Choi, Jiaqi Shang, Rahul G. Krishnan]
+  venue: ICLR 2027
+  status: Under review
+  year: 2027
+  topics: [tabular]
+  summary: "TODO: add a two- or three-sentence abstract."
+  links: []
+- title: Learning to Represent Social Information in Multi-Agent Reinforcement Learning for Self-Organized Systems
+  authors: [Jiaqi Shang, Evan Grzeszkiewicz-O’Neill, Hao Ji, Bingling Huang]
+  venue: IDETC-CIE 2026
+  status: Oral
+  year: 2026
+  topics: [multi-agent]
+  summary: >-
+    How should cooperating agents represent their teammates? We compare three encodings of social
+    information for multi-agent reinforcement learning in a physics-based assembly task, and find
+    that agents develop specialized roles whose structure tracks team performance.
+  links: []
+- title: "ERD: Extended RAW-Diffusion Framework for De-rendering sRGB Images"
+  authors: [Jiaqi Shang, Yifan Qu, Jianbo Qi]
+  venue: ISPRS 2026
+  status: Oral
+  year: 2026
+  topics: [vision]
+  summary: "TODO: add a two- or three-sentence abstract."
+  links: []
 - title: Basis Transformers for Multi-Task Tabular Regression
   authors: [Wei Min Loh, Jiaqi Shang, Pascal Poupart]
-  venue: arXiv preprint
+  venue: arXiv
+  status: Preprint
   year: 2025
+  topics: [tabular]
   summary: >-
-    A transformer for tables with heterogeneous columns, text features and missing values. Across
-    34 OpenML-CTR23 tasks it lifts median R² by 0.338 with the lowest variance, using five times
-    fewer parameters than the strongest baseline.
+    A transformer for real-world tables: text features, a varying number of columns, missing and
+    noisy values. Across 34 OpenML-CTR23 regression tasks it improves median R² by 0.338 with the
+    lowest variance of any method, using five times fewer parameters than the strongest baseline.
   links:
     - label: arXiv
       url: https://arxiv.org/abs/2506.06926

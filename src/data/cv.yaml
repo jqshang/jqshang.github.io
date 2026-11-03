@@ -1,46 +1,73 @@
-education:
-  - period: 2025–2026
-    degree: MSc in Applied Computing
-    place: University of Toronto
-    url: https://www.utoronto.ca/
-    note: Expected Dec. 2026. Computational imaging, machine learning, causal inference, computational models of semantic change.
-  - period: 2020–2025
-    degree: BMath, Computer Science & Statistics; minor in Computational Mathematics
-    place: University of Waterloo
-    url: https://uwaterloo.ca/
-    note: GPA 90.36%. Term Distinction in every term.
-experience:
-  - period: 2024–2025
+research:
+  - period: 2025–
+    role: Student Research Assistant
+    org: University of Toronto
+    preview: krishnan
+    with: Rahul G. Krishnan
+    note: Causal foundation models — scaling CausalPFN, calibrating TraCEE, the Virtual Cell Challenge.
+  - period: 2026–
+    role: Visiting Graduate Student
+    org: UC Riverside
+    preview: ucr
+    note: Department of Mechanical Engineering.
+  - period: 2026–
+    role: Research Assistant
+    org: Cal State Fullerton
+    preview: huang
+    with: Bingling Huang
+    note: Multi-agent reinforcement learning for self-organized assembly.
+  - period: 2024–25
     role: Undergraduate Research Assistant
-    place: University of Waterloo
-    url: https://uwaterloo.ca/
-    note: Basis transformers for tabular regression, with Prof. Pascal Poupart.
+    org: University of Waterloo
+    preview: poupart
+    with: Pascal Poupart
+    note: Basis transformers for multi-task tabular regression.
   - period: 2024
     role: Undergraduate Research Scientist
-    place: Vector Institute
-    url: https://vectorinstitute.ai/
-    note: Contextual bandits with RBF-histogram reward models, with Prof. Pascal Poupart.
-  - period: 2024–2025
-    role: Undergraduate Tutor
-    place: University of Waterloo
-    url: https://uwaterloo.ca/
-    note: Algebra, calculus and computer science.
+    org: Vector Institute
+    preview: vector
+    with: Pascal Poupart
+    note: Contextual bandits with RBF-histogram reward models.
+industry:
+  - period: 2026–
+    role: Data AI Platform Developer (Intern)
+    org: Geotab
+    url: https://www.geotab.com/
+    note: GenAI gateway and agentic AI platform serving 3,500+ users.
+  - period: 2025–26
+    role: Machine Learning Researcher
+    org: Orka
+    note: GAN-based speech enhancement with a causal transformer U-Net.
   - period: 2023
-    role: Full Stack Developer (co-op)
-    place: Aterlo Networks
+    role: Full Stack Developer (Co-op)
+    org: Aterlo Networks
     url: https://aterlo.com/
-    note: Telemetry ingestion and device tooling for 10M+ network devices.
+    note: Telemetry pipelines and tooling for 10M+ network devices.
   - period: 2022
-    role: Data Engineer (co-op)
-    place: Tesla, Shanghai
+    role: Data Engineer (Co-op)
+    org: Tesla, Shanghai
     url: https://www.tesla.com/
-    note: Seat-belt detection analytics over 10M+ events; recruiting data portal.
+    note: Seat-belt detection analytics over 10M+ events.
   - period: 2021
-    role: Machine Learning Engineer (co-op)
-    place: iFlytek, Beijing
+    role: Machine Learning Engineer (Co-op)
+    org: iFlytek, Beijing
     url: https://www.iflytek.com/en/
     note: Chinese paraphrase generation with BERT back-translation.
+education:
+  - period: 2025–26
+    degree: MSc in Applied Computing
+    org: University of Toronto
+    preview: uoft
+    note: GPA 4.0/4.0.
+  - period: 2020–25
+    degree: BMath, Computer Science & Statistics
+    org: University of Waterloo
+    preview: waterloo
+    note: Minor in Computational Mathematics. Term Distinction every term.
 awards:
+  - year: 2026
+    name: Mitacs Accelerate Award
+    amount: $30,000
   - year: 2024
     name: Vector Institute Research Grant
     amount: $7,500
@@ -48,8 +75,8 @@ awards:
     name: University of Waterloo President's Research Award
     amount: $1,500
   - year: 2022
-    name: University of Waterloo CS International Student Upper-Year Scholarship
+    name: Waterloo CS International Student Upper-Year Scholarship
     amount: $3,000
   - year: 2021
-    name: University of Waterloo President's Scholarship of Distinction
+    name: Waterloo President's Scholarship of Distinction
     amount: $2,000

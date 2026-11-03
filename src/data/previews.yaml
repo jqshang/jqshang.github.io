@@ -1,0 +1,36 @@
+# Hover cards for people, labs and places. Referenced as [[key|text]] in text, or `preview: key` in lists.
+krishnan:
+  title: Rahul G. Krishnan
+  sub: Assistant Professor, Computer Science, University of Toronto
+  body: Machine learning for healthcare, causal inference and foundation models.
+  url: https://www.cs.toronto.edu/~rahulgk/
+poupart:
+  title: Pascal Poupart
+  sub: Professor, Cheriton School of Computer Science, University of Waterloo
+  body: Reinforcement learning, probabilistic models and natural language processing.
+  url: https://cs.uwaterloo.ca/~ppoupart/
+huang:
+  title: Bingling Huang
+  sub: Department of Engineering, California State University, Fullerton
+  body: Self-organizing and multi-agent engineered systems.
+  url: https://www.fullerton.edu/
+uoft:
+  title: University of Toronto
+  sub: Toronto, Canada
+  body: Master of Science in Applied Computing (MScAC), 2025–2026.
+  url: https://mscac.utoronto.ca/
+waterloo:
+  title: University of Waterloo
+  sub: Waterloo, Canada
+  body: BMath in Computer Science & Statistics, minor in Computational Mathematics, 2020–2025.
+  url: https://uwaterloo.ca/
+ucr:
+  title: University of California, Riverside
+  sub: Department of Mechanical Engineering
+  body: Visiting graduate student since April 2026.
+  url: https://www.ucr.edu/
+vector:
+  title: Vector Institute
+  sub: Toronto, Canada
+  body: Independent AI research institute. Undergraduate research scientist, summer 2024.
+  url: https://vectorinstitute.ai/

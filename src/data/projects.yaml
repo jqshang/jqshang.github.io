@@ -1,18 +1,13 @@
-- title: Causal inference with a latent confounder, by expectation–maximization
-  date: Jan.–Apr. 2025
+- title: Multi-agent reinforcement learning for fish navigation in flow
+  period: 2026–
+  topics: [multi-agent]
   summary: >-
-    An EM framework that jointly estimates a hidden confounder U and the average treatment effect
-    under parametric structural causal model assumptions. Three E-step variants (Newton–Raphson,
-    Monte Carlo, closed form), written in R and benchmarked on IHDP. Newton–Raphson converged
-    fastest, reaching an ATE of 4.0248 against the true 4.0297, and an augmented propensity model on
-    Û + X cut ATE bias by 42.6%.
-  tags: [Causality, EM, R]
-- title: Compositional attention with intermediate step supervision
-  date: Jan.–Apr. 2025
+    Self-propelled fish agents trained with PPO to navigate time-varying vortex flows, with an
+    observation ablation that shows which flow features actually drive navigation.
+- title: Protein information flow via Granger causality
+  period: 2025
+  topics: [causal]
   summary: >-
-    A compositional attention mechanism that folds function embeddings into transformer
-    self-attention for function-composition tasks, outperforming standard self-attention on
-    held-out compositions. A simulated benchmark of 2,000 samples tests generalization to unseen
-    composition patterns, and an auxiliary loss on intermediate steps exposes a train–test trade-off
-    in how much supervision helps.
-  tags: [Transformers, Compositional generalization]
+    Protein allostery as causal discovery on molecular-dynamics trajectories of adenylate kinase. A
+    neural Granger model with a Bayesian prior recovers directed signalling pathways that
+    correlation-based baselines miss.

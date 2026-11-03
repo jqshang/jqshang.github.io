@@ -1,14 +1,21 @@
 ---
 import '../styles/site.css';
-import { profile, publications, projects, cv } from '../data/load';
+import { profile, previews, publications, projects, cv, music, withPreviews } from '../data/load';
+
+const TOPICS = [
+  { id: 'tabular', label: 'Tabular' },
+  { id: 'causal', label: 'Causal' },
+  { id: 'multi-agent', label: 'Multi-agent' },
+  { id: 'vision', label: 'Vision' },
+];
+const count = (id: string) =>
+  [...publications, ...projects].filter((x: any) => x.topics?.includes(id)).length;
 
 const updated = new Date().toLocaleDateString('en-CA', { month: 'long', year: 'numeric' });
 const year = new Date().getFullYear();
-const description = `${profile.name}: ${profile.role} student at the ${profile.affiliation}. Machine learning research in tabular learning, generative modelling and causality.`;
-const totalPages = 3;
-
-// Bold the site owner's name in author lists.
-const isMe = (author: string) => author === profile.name;
+const description = `${profile.name} — ${profile.role}. ${profile.pitch}`;
+const isMe = (a: string) => a === profile.name;
+const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {});
 ---
 
 <!doctype html>
@@ -22,289 +29,326 @@ const isMe = (author: string) => author === profile.name;
     <meta property="og:title" content={profile.name} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`https://jqshang.github.io${profile.photo}`} />
-    <meta name="theme-color" content="#1a2039" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..600;1,400&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
     <script is:inline>
       (() => {
         const saved = localStorage.getItem('theme');
-        const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        document.documentElement.dataset.theme = saved || 'light';
       })();
     </script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
 
-    <header class="bar">
-      <a class="wordmark" href="#top">{profile.name}</a>
-      <nav aria-label="Sections">
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href={profile.cv}>CV</a>
-      </nav>
-      <button class="theme" type="button" aria-label="Switch colour theme">
-        <span class="theme__to-dark">Dark</span><span class="theme__to-light">Light</span>
-      </button>
-    </header>
+    <button class="theme" type="button" aria-label="Toggle dark mode">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <circle class="theme__sun" cx="12" cy="12" r="5" />
+        <g class="theme__rays">
+          {Array.from({ length: 8 }, (_, i) => (
+            <line x1="12" y1="1.5" x2="12" y2="4" transform={`rotate(${i * 45} 12 12)`} />
+          ))}
+        </g>
+      </svg>
+    </button>
 
-    <main id="main">
-      <!-- Page 1: the title page -->
-      <article class="sheet sheet--title" id="top">
-        <h1 class="title">{profile.name}</h1>
-        <p class="affil">
-          {profile.role}, {profile.affiliation}<br />
-          {profile.location}
-        </p>
+    <main id="main" class="col">
+      <!-- Intro -->
+      <header class="intro">
+        <img class="avatar" src={profile.photo} width="160" height="160" alt={`Photo of ${profile.name}`} />
+        <h1>{profile.name}</h1>
+        <p class="pitch">{profile.pitch}</p>
+        <p class="role">{profile.role}</p>
+        <ul class="links">
+          {profile.links.map((l: any) => (
+            <li><a href={l.url}>{l.label}<span class="arrow" aria-hidden="true"></span></a></li>
+          ))}
+        </ul>
+      </header>
 
-        <p class="contact">
-          {profile.links.map((l: { label: string; url: string }) => <a href={l.url}>{l.label}</a>)}
-          <a class="button" href={profile.cv}>Download CV</a>
-        </p>
+      <!-- About -->
+      <section aria-labelledby="about-h" class="block">
+        <h2 id="about-h">About</h2>
+        {profile.bio.map((p: string) => <p class="prose" set:html={withPreviews(p)} />)}
+      </section>
 
-        <div class="abstract">
-          <section aria-labelledby="abstract-h" class="reveal">
-            <h2 id="abstract-h" class="abstract__h">Abstract</h2>
-            {profile.bio.map((p: string) => <p set:html={p} />)}
-          </section>
-          <figure class="figure reveal">
-            <img src={profile.photo} width="800" height="800" alt={`Portrait of ${profile.name}`} />
-            <figcaption><b>Figure 1.</b> The author.</figcaption>
-          </figure>
+      <!-- Publications + projects share one filter -->
+      <section aria-labelledby="pub-h" class="block" id="publications">
+        <div class="block__head">
+          <h2 id="pub-h">Publications</h2>
+          <div class="chips" role="group" aria-label="Filter by topic">
+            <button type="button" class="chip" data-topic="all" aria-pressed="true">All</button>
+            {TOPICS.map((t) => (
+              <button type="button" class="chip" data-topic={t.id} aria-pressed="false">
+                {t.label}<span class="chip__n">{count(t.id)}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        <p class="folio">1 of {totalPages}</p>
-      </article>
-
-      <!-- Page 2: publications and projects -->
-      <article class="sheet">
-        <section id="publications" aria-labelledby="pub-h" class="reveal">
-          <h2 id="pub-h">Publications</h2>
-          <ol class="refs">
-            {
-              publications.map((p: any) => (
-                <li class="ref">
-                  <div class="ref__head">
-                  <h3 class="ref__title">
-                    <a href={p.links[0].url}>{p.title}</a>
-                  </h3>
-                  <p class="ref__authors">
-                    {p.authors.map((a: string, i: number) => (
-                      <>
-                        {isMe(a) ? <strong>{a}</strong> : a}
-                        {i < p.authors.length - 1 ? ', ' : ''}
-                      </>
+        <ol class="pubs">
+          {publications.map((p: any, i: number) => (
+            <li class="pub filterable" data-topics={p.topics.join(' ')}>
+              <div class="filterable__inner">
+                <button type="button" class="pub__head" aria-expanded="false" aria-controls={`pub-${i}`}>
+                  <span class="pub__title">{p.title}</span>
+                  <span class="pub__meta">
+                    <span>{p.venue}</span>
+                    {p.status && <span class={`badge ${p.status === 'Oral' ? 'badge--hot' : ''}`}>{p.status}</span>}
+                  </span>
+                  <span class="pub__authors">
+                    {p.authors.map((a: string, k: number) => (
+                      <>{isMe(a) ? <strong>{a}</strong> : a}{k < p.authors.length - 1 ? ', ' : ''}</>
                     ))}
-                  </p>
-                  <p class="ref__venue">
-                    <em>{p.venue}</em>, {p.year}
-                  </p>
-                  </div>
-                  {p.summary && <p class="ref__summary">{p.summary}</p>}
-                  <div class="ref__links">
-                    {p.links.map((l: any) => <a href={l.url}>{l.label}</a>)}
-                    {p.bibtex && (
-                      <details class="cite">
-                        <summary>BibTeX</summary>
-                        <div class="cite__box">
-                          <pre><code>{p.bibtex}</code></pre>
-                          <button type="button" class="cite__copy" data-bibtex={p.bibtex}>
-                            Copy
-                          </button>
-                        </div>
-                      </details>
+                  </span>
+                  <span class="pub__chev" aria-hidden="true" />
+                </button>
+                <div class="pub__panel" id={`pub-${i}`}>
+                  <div class="pub__panel-inner">
+                    <p class="pub__summary">{p.summary}</p>
+                    {(p.links.length > 0 || p.bibtex) && (
+                      <div class="pub__actions">
+                        {p.links.map((l: any) => <a class="pill" href={l.url}>{l.label}<span class="arrow" aria-hidden="true"></span></a>)}
+                        {p.bibtex && <button type="button" class="pill copy" data-copy={p.bibtex}>Copy BibTeX</button>}
+                      </div>
                     )}
                   </div>
-                </li>
-              ))
-            }
-          </ol>
-        </section>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <p class="empty" hidden>No papers in this topic yet. See the projects below.</p>
+      </section>
 
-        <section id="projects" aria-labelledby="proj-h" class="projects reveal">
-          <h2 id="proj-h">Projects</h2>
-          <div class="projects__list">
-            {
-              projects.map((p: any) => (
-                <article class="project">
-                  <h3>{p.title}</h3>
-                  <p class="project__meta">
-                    {p.date} · {p.tags.join(', ')}
-                  </p>
-                  <p>{p.summary}</p>
-                </article>
-              ))
-            }
-          </div>
-        </section>
+      <section aria-labelledby="proj-h" class="block" id="projects">
+        <h2 id="proj-h">Projects</h2>
+        <ul class="rows">
+          {projects.map((p: any) => (
+            <li class="row filterable" data-topics={p.topics.join(' ')}>
+              <div class="filterable__inner row__grid">
+                <span class="row__when">{p.period}</span>
+                <div>
+                  <p class="row__what">{p.title}</p>
+                  <p class="row__note">{p.summary}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p class="empty" hidden>No projects in this topic yet.</p>
+      </section>
 
-        <p class="folio">2 of {totalPages}</p>
-      </article>
+      <!-- Experience -->
+      <section aria-labelledby="res-h" class="block" id="research">
+        <h2 id="res-h">Research</h2>
+        <ul class="rows">
+          {cv.research.map((r: any) => (
+            <li class="row row__grid">
+              <span class="row__when">{r.period}</span>
+              <div>
+                <p class="row__what">
+                  {r.role}, <a class="pv" href={previews[r.preview]?.url} {...pv(r.preview)}>{r.org}</a>
+                </p>
+                <p class="row__note">{r.note}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-      <!-- Page 3: the tables -->
-      <article class="sheet">
-        <section id="experience" aria-labelledby="exp-h" class="reveal">
-          <h2 id="exp-h">Experience</h2>
-          <table class="booktabs">
-            <caption>
-              <b>Table 1.</b> Research and industry positions. Full details in the <a href={profile.cv}>CV</a>.
-            </caption>
-            <thead>
-              <tr><th scope="col">Years</th><th scope="col">Position</th><th scope="col">Organization</th><th scope="col">Focus</th></tr>
-            </thead>
-            <tbody>
-              {
-                cv.experience.map((e: any) => (
-                  <tr>
-                    <td class="num">{e.period}</td>
-                    <th scope="row">{e.role}</th>
-                    <td><a href={e.url}>{e.place}</a></td>
-                    <td>{e.note}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </section>
+      <section aria-labelledby="ind-h" class="block" id="industry">
+        <h2 id="ind-h">Industry</h2>
+        <ul class="rows">
+          {cv.industry.map((r: any) => (
+            <li class="row row__grid">
+              <span class="row__when">{r.period}</span>
+              <div>
+                <p class="row__what">{r.role}, {r.url ? <a href={r.url}>{r.org}</a> : r.org}</p>
+                <p class="row__note">{r.note}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-        <div class="pair">
-          <section id="education" aria-labelledby="edu-h" class="reveal">
-            <h2 id="edu-h">Education</h2>
-            <table class="booktabs">
-              <caption><b>Table 2.</b> Degrees.</caption>
-              <thead>
-                <tr><th scope="col">Years</th><th scope="col">Degree</th></tr>
-              </thead>
-              <tbody>
-                {
-                  cv.education.map((e: any) => (
-                    <tr>
-                      <td class="num">{e.period}</td>
-                      <td>
-                        <strong>{e.degree}</strong>
-                        <br />
-                        <a href={e.url}>{e.place}</a>. {e.note}
-                      </td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
-          </section>
+      <section aria-labelledby="edu-h" class="block">
+        <h2 id="edu-h">Education</h2>
+        <ul class="rows">
+          {cv.education.map((e: any) => (
+            <li class="row row__grid">
+              <span class="row__when">{e.period}</span>
+              <div>
+                <p class="row__what">{e.degree}, <a class="pv" href={previews[e.preview]?.url} {...pv(e.preview)}>{e.org}</a></p>
+                <p class="row__note">{e.note}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-          <section id="awards" aria-labelledby="awd-h" class="reveal">
-            <h2 id="awd-h">Awards</h2>
-            <table class="booktabs">
-              <caption><b>Table 3.</b> Awards, scholarships and grants.</caption>
-              <thead>
-                <tr><th scope="col">Year</th><th scope="col">Award</th><th scope="col" class="num">Amount</th></tr>
-              </thead>
-              <tbody>
-                {
-                  cv.awards.map((a: any) => (
-                    <tr>
-                      <td class="num">{a.year}</td>
-                      <td>{a.name}</td>
-                      <td class="num">{a.amount}</td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
-          </section>
-        </div>
+      <section aria-labelledby="awd-h" class="block">
+        <h2 id="awd-h">Awards</h2>
+        <ul class="rows">
+          {cv.awards.map((a: any) => (
+            <li class="row row__grid row--tight">
+              <span class="row__when">{a.year}</span>
+              <p class="row__what row__what--split"><span>{a.name}</span><span class="amount">{a.amount}</span></p>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-        <p class="folio">3 of {totalPages}</p>
-      </article>
+      <!-- Off the clock -->
+      <section aria-labelledby="otc-h" class="block" id="off-the-clock">
+        <h2 id="otc-h">Off the clock</h2>
+        <p class="prose">What's on repeat lately.</p>
+        <ul class="shelf">
+          {music.map((m: any) => (
+            <li class="record" style={`--sleeve: ${m.color}`}>
+              <a class="record__hit" href={m.url || undefined} tabindex="0" aria-label={`${m.title} by ${m.artist}`}>
+                <span class="record__vinyl" aria-hidden="true">
+                  <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="49" class="v-disc" />
+                    {[44, 39, 34, 29].map((r) => <circle cx="50" cy="50" r={r} class="v-groove" />)}
+                    <circle cx="50" cy="50" r="17" class="v-label" />
+                    <circle cx="50" cy="50" r="2" class="v-hole" />
+                    <path d="M50 36 a14 14 0 0 1 14 14" class="v-shine" />
+                  </svg>
+                </span>
+                <span class="record__sleeve">
+                  {m.cover ? <img src={m.cover} alt="" width="200" height="200" /> : <span class="record__art">{m.title}</span>}
+                </span>
+              </a>
+              <p class="record__cap"><span>{m.title}</span><span>{m.artist}</span></p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <footer class="foot">
+        <p>© {year} {profile.name} · Updated {updated}</p>
+        <p><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+      </footer>
     </main>
 
-    <!-- The back of the paper -->
-    <footer class="back">
-      <div class="back__edge" aria-hidden="true">{Array.from({ length: 12 }, () => <span />)}</div>
-      <div class="back__body">
-        <div>
-          <p class="back__name">{profile.name}</p>
-          <p>
-            The best way to reach me is by email. I'm happy to talk about research, tabular data, or
-            anything in between.
-          </p>
-        </div>
-        <ul class="back__links">
-          {profile.links.map((l: any) => <li><a href={l.url}>{l.label === 'Email' ? profile.email : l.label}</a></li>)}
-          <li><a href={profile.cv}>Curriculum vitae (PDF)</a></li>
-        </ul>
-      </div>
-      <p class="back__imprint">© {year} {profile.name}. Last updated {updated}.</p>
-    </footer>
+    <!-- One shared hover card -->
+    <div class="preview" role="tooltip" id="preview" hidden>
+      <p class="preview__title"></p>
+      <p class="preview__sub"></p>
+      <p class="preview__body"></p>
+      <p class="preview__url"></p>
+    </div>
+    <script type="application/json" id="preview-data" set:html={JSON.stringify(previews)} />
 
     <script>
-      // Theme toggle
       const root = document.documentElement;
-      document.querySelector('.theme')?.addEventListener('click', () => {
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---- Theme: a circle wipe from the toggle ---- */
+      const toggle = document.querySelector<HTMLButtonElement>('.theme')!;
+      toggle.addEventListener('click', () => {
         const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        localStorage.setItem('theme', next);
+        const apply = () => { root.dataset.theme = next; localStorage.setItem('theme', next); };
+        const doc = document as any;
+        if (!doc.startViewTransition || reduce) return apply();
+        const r = toggle.getBoundingClientRect();
+        root.style.setProperty('--vt-x', `${r.left + r.width / 2}px`);
+        root.style.setProperty('--vt-y', `${r.top + r.height / 2}px`);
+        doc.startViewTransition(apply);
       });
 
-      // Copy BibTeX
-      document.querySelectorAll<HTMLButtonElement>('.cite__copy').forEach((btn) => {
-        btn.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(btn.dataset.bibtex ?? '');
-            btn.textContent = 'Copied';
-          } catch {
-            btn.textContent = 'Select and copy';
-          }
-          setTimeout(() => (btn.textContent = 'Copy'), 1800);
+      /* ---- Expandable papers ---- */
+      document.querySelectorAll<HTMLButtonElement>('.pub__head').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          btn.closest('.pub')!.classList.toggle('is-open', !open);
         });
       });
 
-      // Mark the section in view in the nav
-      const navLinks = new Map(
-        [...document.querySelectorAll<HTMLAnchorElement>('.bar nav a[href^="#"]')].map((a) => [a.hash.slice(1), a]),
-      );
-      const spy = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            const link = navLinks.get(e.target.id);
-            if (!link) continue;
-            if (e.isIntersecting) {
-              navLinks.forEach((a) => a.removeAttribute('aria-current'));
-              link.setAttribute('aria-current', 'true');
-            } else if (link.hasAttribute('aria-current') && e.boundingClientRect.top > 0) {
-              link.removeAttribute('aria-current');
-            }
-          }
-        },
-        { rootMargin: '-30% 0px -60% 0px' },
-      );
-      navLinks.forEach((_, id) => {
-        const el = document.getElementById(id);
-        if (el) spy.observe(el);
+      /* ---- Copy BibTeX ---- */
+      document.querySelectorAll<HTMLButtonElement>('.copy').forEach((btn) => {
+        const label = btn.textContent;
+        btn.addEventListener('click', async () => {
+          try { await navigator.clipboard.writeText(btn.dataset.copy ?? ''); btn.textContent = 'Copied ✓'; }
+          catch { btn.textContent = 'Copy failed'; }
+          btn.classList.add('is-done');
+          setTimeout(() => { btn.textContent = label; btn.classList.remove('is-done'); }, 1600);
+        });
       });
 
-      // Entrances: content is visible by default; only animate when JS runs and motion is allowed.
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-        const items = document.querySelectorAll<HTMLElement>('.reveal');
+      /* ---- Topic filter (papers + projects) ---- */
+      const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
+      const items = [...document.querySelectorAll<HTMLElement>('.filterable')];
+      chips.forEach((chip) =>
+        chip.addEventListener('click', () => {
+          const t = chip.dataset.topic!;
+          chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+          items.forEach((el) => {
+            const show = t === 'all' || el.dataset.topics!.split(' ').includes(t);
+            el.classList.toggle('is-out', !show);
+            el.toggleAttribute('inert', !show);
+          });
+          document.querySelectorAll<HTMLElement>('.block').forEach((sec) => {
+            const empty = sec.querySelector<HTMLElement>('.empty');
+            if (!empty) return;
+            empty.hidden = !!sec.querySelector('.filterable:not(.is-out)');
+          });
+        }),
+      );
+
+      /* ---- Hover previews ---- */
+      const data = JSON.parse(document.getElementById('preview-data')!.textContent!);
+      const card = document.getElementById('preview')!;
+      const q = (s: string) => card.querySelector<HTMLElement>(s)!;
+      let showT: number | undefined, hideT: number | undefined;
+      const canHover = matchMedia('(hover: hover)').matches;
+      function show(el: HTMLElement) {
+        const p = data[el.dataset.preview!];
+        if (!p) return;
+        q('.preview__title').textContent = p.title;
+        q('.preview__sub').textContent = p.sub;
+        q('.preview__body').textContent = p.body;
+        q('.preview__url').textContent = new URL(p.url).host.replace(/^www\./, '');
+        card.hidden = false;
+        const r = el.getBoundingClientRect(), cw = card.offsetWidth, ch = card.offsetHeight;
+        const x = Math.min(Math.max(12, r.left + r.width / 2 - cw / 2), innerWidth - cw - 12);
+        let y = r.bottom + 10, below = true;
+        if (y + ch > innerHeight - 12) { y = r.top - ch - 10; below = false; }
+        card.style.left = `${x + scrollX}px`;
+        card.style.top = `${y + scrollY}px`;
+        card.style.transformOrigin = `${r.left + r.width / 2 - x}px ${below ? '0' : '100%'}`;
+        el.setAttribute('aria-describedby', 'preview');
+        requestAnimationFrame(() => card.classList.add('is-on'));
+      }
+      function hide(el?: HTMLElement) {
+        card.classList.remove('is-on');
+        el?.removeAttribute('aria-describedby');
+        hideT = window.setTimeout(() => (card.hidden = true), 160);
+      }
+      document.querySelectorAll<HTMLElement>('[data-preview]').forEach((el) => {
+        if (canHover) {
+          el.addEventListener('pointerenter', () => { clearTimeout(hideT); showT = window.setTimeout(() => show(el), 220); });
+          el.addEventListener('pointerleave', () => { clearTimeout(showT); hide(el); });
+        }
+        el.addEventListener('focus', () => { clearTimeout(hideT); show(el); });
+        el.addEventListener('blur', () => hide(el));
+      });
+      addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+
+      /* ---- Gentle entrances ---- */
+      if (!reduce && 'IntersectionObserver' in window) {
         root.classList.add('motion');
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) {
-                e.target.classList.add('is-in');
-                io.unobserve(e.target);
-              }
-            }
-          },
-          { rootMargin: '0px 0px -8% 0px' },
-        );
-        items.forEach((el) => io.observe(el));
+        const io = new IntersectionObserver((es) => es.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        }), { rootMargin: '0px 0px -10% 0px' });
+        document.querySelectorAll('.block, .intro').forEach((el) => io.observe(el));
       }
     </script>
   </body>

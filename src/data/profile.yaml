@@ -1,33 +1,28 @@
 name: Jiaqi Shang
-role: MSc in Applied Computing
-affiliation: University of Toronto
-location: Toronto, Ontario, Canada
-email: jqshang@cs.toronto.edu
+# Placeholder pitch — rewrite later.
+pitch: I build machine learning models that reason over tables, causes, and agents.
+role: MScAC student at the University of Toronto
 photo: /images/profile.jpg
+email: jqshang@cs.toronto.edu
+cv: /cv.pdf
 links:
   - label: Email
     url: mailto:jqshang@cs.toronto.edu
-  - label: Google Scholar
+  - label: Scholar
     url: https://scholar.google.ca/citations?user=X4h0EnIAAAAJ&hl=en
   - label: GitHub
     url: https://github.com/jqshang
   - label: LinkedIn
     url: https://www.linkedin.com/in/charlesshang11
-cv: /cv.pdf
-# Bio paragraphs. Markdown-style links are written as HTML.
+  - label: CV
+    url: /cv.pdf
+# Placeholder bio — rewrite later. [[key|text]] marks a hover preview (see previews.yaml).
 bio:
   - >-
-    I am an <a href="https://mscac.utoronto.ca/">MScAC</a> student at the
-    <a href="https://www.utoronto.ca/">University of Toronto</a>. My research interests focus on
-    Machine learning, Generative Modelling, Tabular Learning, Computational Imaging, Speech
-    Enhancement, and Causality. However, I'm open to exploring any interesting problems in the field
-    of Computer Science and Statistics.
+    I'm a Master of Science in Applied Computing student at the [[uoft|University of Toronto]], where
+    I work with [[krishnan|Prof. Rahul G. Krishnan]] on foundation models for tabular and causal
+    data. I'm also a visiting graduate student at [[ucr|UC Riverside]], working on multi-agent
+    reinforcement learning with [[huang|Prof. Bingling Huang]].
   - >-
-    Previously, I was an undergraduate student in
-    <a href="https://cs.uwaterloo.ca/">David R. Cheriton School of Computer Science</a> at the
-    <a href="https://uwaterloo.ca/">University of Waterloo</a>, majoring in both Computer Science and
-    Statistics, minoring in Computational Mathematics. I was also a Machine Learning Engineer at
-    <a href="https://vectorinstitute.ai/">Vector Institute</a> and an Undergraduate Research Assistant
-    at the <a href="https://uwaterloo.ca/">University of Waterloo</a>, working on developing
-    algorithms for bandit foundation models and tabular foundation models, supervised by
-    <a href="https://cs.uwaterloo.ca/~ppoupart/">Prof. Pascal Poupart</a>.
+    Before that, I studied computer science and statistics at the [[waterloo|University of Waterloo]]
+    and did research with [[poupart|Prof. Pascal Poupart]] at Waterloo and the [[vector|Vector Institute]].
