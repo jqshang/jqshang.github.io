@@ -11,7 +11,7 @@ export default defineConfig({
     '/publication': '/#publications',
     '/projects': '/#projects',
     '/project': '/#projects',
-    '/cv': '/#experience',
-    '/resume': '/#experience',
+    '/cv': '/#education',
+    '/resume': '/#education',
   },
 });
