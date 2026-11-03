@@ -43,7 +43,21 @@
     and Sony.
   abstract: |-
     Recovering RAW sensor measurements from sRGB images is a central problem in computational photography, as RAW data preserves the true scene radiance prior to the nonlinear transformations introduced by a camera’s Image Signal Processing (ISP) pipeline. However, ISPs vary across different camera brands and models, making inverse ISP reconstruction particularly challenging when the sensor characteristics are unknown. Existing approaches often rely on metadata, modifiable ISP, or camera-specific training, which limits their ability to generalize across unseen devices. In this paper, we investigate a diffusion-based inverse ISP framework designed for cross-sensor RAW reconstruction. Building upon the RAW-Diffusion model, we incorporate a ControlNet-guided architecture that provides structured conditioning to improve generalization without requiring metadata at inference time. Using the MIT-Adobe FiveK dataset, we evaluate seven camera models, which is sufficient to test cross-sensor robustness. Our results demonstrate that the proposed ControlNet-enhanced model enhances reconstruction accuracy on unseen sensors, outperforming the baseline RAW-Diffusion model on the Nikon dataset and achieving competitive performance on Canon, Leica, and Sony. These findings highlight the potential of guidance-based diffusion models for practical, camera-agnostic inverse ISP.
-  links: []
+  links:
+    - label: Paper
+      url: https://isprs-archives.copernicus.org/articles/XLIX-B3-2026/249/2026/
+    - label: PDF
+      url: https://isprs-archives.copernicus.org/articles/XLIX-B3-2026/249/2026/isprs-archives-XLIX-B3-2026-249-2026.pdf
+  bibtex: |-
+    @article{shang2026erd,
+      title   = {ERD: Extended RAW-Diffusion Framework for De-rendering sRGB Images},
+      author  = {Shang, Jiaqi and Qu, Yifan and Qi, Jianbo},
+      journal = {The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences},
+      volume  = {XLIX-B3-2026},
+      pages   = {249--256},
+      year    = {2026},
+      doi     = {10.5194/isprs-archives-XLIX-B3-2026-249-2026}
+    }
 - title: Basis Transformers for Multi-Task Tabular Regression
   authors: [Wei Min Loh, Jiaqi Shang, Pascal Poupart]
   venue: arXiv
