@@ -261,7 +261,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
         <ul class="shelf">
           {music.map((m: any) => (
             <li class="record" style={`--sleeve: ${m.color}`}>
-              <a class="record__hit" href={m.url || undefined} tabindex="0" aria-label={`${m.title} by ${m.artist}`}>
+              <a class="record__hit" href={m.url || undefined} target="_blank" rel="noopener noreferrer" tabindex="0" aria-label={`${m.title} by ${m.artist}`}>
                 <span class="record__vinyl" aria-hidden="true">
                   <svg viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="49" class="v-disc" />
@@ -275,7 +275,7 @@ const pv = (key?: string) => (key && previews[key] ? { 'data-preview': key } : {
                   {m.cover ? <img src={m.cover} alt="" width="200" height="200" /> : <span class="record__art">{m.title}</span>}
                 </span>
               </a>
-              <p class="record__cap"><span>{m.title}</span><span>{m.artist}</span></p>
+              <p class="record__cap"><span>{m.title}</span><span>{m.artist}{m.year && ` · ${m.year}`}</span></p>
             </li>
           ))}
         </ul>

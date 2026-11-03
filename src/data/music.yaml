@@ -1,14 +1,20 @@
-# PLACEHOLDERS — replace with real albums. `cover` is optional (put square images in public/images/albums/);
-# without it, a coloured sleeve with the title is drawn.
-- title: Album One
-  artist: Artist placeholder
-  color: "#e4572e"
-  url: ""
-- title: Album Two
-  artist: Artist placeholder
-  color: "#2b4c7e"
-  url: ""
-- title: Album Three
-  artist: Artist placeholder
-  color: "#d9a441"
-  url: ""
+# Albums on the shelf. `cover` is a square image in public/images/albums/;
+# `color` tints the record's centre label; `url` opens the album (new tab).
+- title: Voicenotes
+  artist: Charlie Puth
+  year: 2018
+  cover: /images/albums/voicenotes.jpg
+  color: "#4b1015"
+  url: https://music.apple.com/us/album/voicenotes/1293229669
+- title: Whatever's Clever!
+  artist: Charlie Puth
+  year: 2026
+  cover: /images/albums/whatevers-clever.jpg
+  color: "#902223"
+  url: https://music.apple.com/us/album/whatevers-clever/1845189970
+- title: CHARLIE
+  artist: Charlie Puth
+  year: 2022
+  cover: /images/albums/charlie.jpg
+  color: "#706a64"
+  url: https://music.apple.com/us/album/charlie/1633317997
