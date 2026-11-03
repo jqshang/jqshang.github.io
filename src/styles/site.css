@@ -11,7 +11,8 @@
   --sel: #f4c9bb;
 
   --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
-  --sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --sans: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --script: 'Mea Culpa', 'Snell Roundhand', cursive;
 
   --spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121,
     1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%,
@@ -119,10 +120,12 @@ a:hover .arrow { transform: translate(2px, -2px); }
 }
 .avatar:hover { transform: rotate(-2deg) scale(1.03); }
 h1 {
-  font: 400 clamp(2.75rem, 2rem + 3vw, 3.5rem)/1 var(--serif);
-  letter-spacing: -0.01em;
+  font: 400 clamp(3.75rem, 2.6rem + 4.4vw, 5.5rem)/1.2 var(--script);
+  letter-spacing: 0;
+  padding-left: 0.18em; /* room for the J's swash */
+  margin-block: -0.15em 0.1em;
 }
-.pitch { margin-top: 18px; font-size: 1.1875rem; line-height: 1.45; max-width: 42ch; }
+.pitch { margin-top: 28px; font-size: 1.1875rem; line-height: 1.45; max-width: 42ch; }
 .role { margin-top: 8px; color: var(--muted); }
 .links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 24px; }
 .links a { text-decoration: none; color: var(--muted); transition: color 0.2s; }
